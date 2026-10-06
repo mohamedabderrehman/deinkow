@@ -1,0 +1,32 @@
+[
+  {
+    "path": "favicon.ico",
+    "sha256": "a1f888e1f1a689aff1608cb520e22c165824bb4cefc61bb74fd1260876c3e82a",
+    "scope": "Original supplied application asset; third-party rights are separate from source MIT"
+  },
+  {
+    "path": "docs/architecture.svg",
+    "sha256": "2fc2ea49ec795a0e1740f57818236c69f0afa70729b324fb8598782d8050ec9e",
+    "scope": "Actual synthetic application capture"
+  },
+  {
+    "path": "docs/images/client-dashboard.jpg",
+    "sha256": "0590bf85f2c4a1013b0f54d982f861b2bd9d90a0106edd23e2e487a00d15ad6c",
+    "scope": "Actual synthetic application capture"
+  },
+  {
+    "path": "docs/images/project-intake.jpg",
+    "sha256": "0fdb3060d1ef903b3816cd18760ecac94da766b1a0b982d18a096385d0d4fdf9",
+    "scope": "Actual synthetic application capture"
+  },
+  {
+    "path": "docs/images/studio-desktop.jpg",
+    "sha256": "bad5be0ade3c2bea468d3b800d71fb1abd76f78a871716fb52c75d36a82c5d6d",
+    "scope": "Actual synthetic application capture"
+  },
+  {
+    "path": "docs/images/workroom-messages.jpg",
+    "sha256": "2bd7c6a3aa480814becd819a5db0b1d0de8a836880af85ff9f501b5803ef7947",
+    "scope": "Actual synthetic application capture"
+  }
+]

@@ -34,8 +34,8 @@
                     </a>
                     <a href="/Templates" class="nav-link">نماذج جاهزة</a>
                     <a href="/Team" class="nav-link">الفريق</a>
-                    <a href="/RequestProject" class="nav-link">طلب مشروع جديد</a>
-                    <a href="/Profile" class="nav-link">الملف الشخصي</a>
+                    <a href="/request-project" class="nav-link">طلب مشروع جديد</a>
+                    <a href="/profile" class="nav-link">الملف الشخصي</a>
                     <!-- Notifications -->
                     <div class="notifications-container">
                         <button class="notifications-btn" id="notificationsBtn" onclick="toggleNotifications()">
@@ -129,7 +129,7 @@
                     <h1 class="dashboard-title">مرحباً، <span id="userName">جاري التحميل...</span></h1>
                     <p class="dashboard-subtitle">نظرة عامة على مشاريعك</p>
                 </div>
-                <a href="/RequestProject" class="btn btn-primary btn-icon">
+                <a href="/request-project" class="btn btn-primary btn-icon">
                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M10 3V17M3 10H17" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                     </svg>
@@ -221,7 +221,7 @@
                             <h2 class="card-title">إجراءات سريعة</h2>
                         </div>
                         <div class="quick-actions">
-                            <a href="/RequestProject" class="quick-action-item">
+                            <a href="/request-project" class="quick-action-item">
                                 <div class="quick-action-icon quick-action-primary">
                                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M10 3V17M3 10H17" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
@@ -377,7 +377,7 @@
                         </svg>
                         <h3>لا توجد مشاريع</h3>
                         <p>${currentFilter === 'all' ? 'ابدأ بإنشاء مشروعك الأول' : 'لا توجد مشاريع بهذه الحالة'}</p>
-                        ${currentFilter === 'all' ? '<a href="/RequestProject" class="btn btn-primary">طلب مشروع جديد</a>' : ''}
+                        ${currentFilter === 'all' ? '<a href="/request-project" class="btn btn-primary">طلب مشروع جديد</a>' : ''}
                     </div>
                 `;
                 return;
@@ -432,7 +432,7 @@
                             </div>
                         </div>
                         <div class="project-item-footer">
-                            <a href="/Workroom?id=${ticket.id}" class="btn btn-sm btn-primary">فتح المشروع</a>
+                            <a href="/workroom?id=${ticket.id}" class="btn btn-sm btn-primary">فتح المشروع</a>
                         </div>
                     </div>
                 `;
@@ -465,7 +465,7 @@
                         </svg>
                         <h3>لا توجد مشاريع</h3>
                         <p>ابدأ بإنشاء مشروعك الأول</p>
-                        <a href="/RequestProject" class="btn btn-primary">طلب مشروع جديد</a>
+                        <a href="/request-project" class="btn btn-primary">طلب مشروع جديد</a>
                     </div>
                 `;
             }

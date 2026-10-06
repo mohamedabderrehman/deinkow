@@ -1,0 +1,22 @@
+# جولة موثقة
+
+جولة في لقطات فعلية للواجهة. ليست فيديو متصلاً أو فحص جهاز موبايل. ينفذ أمر القبول تسلسل الخادم ببيانات اصطناعية؛ راجع سجل التحقق.
+
+يستكشف الزائر خدمات الاستوديو ← يرسل العميل طلباً ← يتبادل العميل والإدارة الرسائل والملفات في غرفة العمل ← تحافظ الإشعارات والحالات على متابعة العمل.
+
+## studio desktop
+
+![Deinkow](images/studio-desktop.jpg)
+
+## client dashboard
+
+![Deinkow](images/client-dashboard.jpg)
+
+## project intake
+
+![Deinkow](images/project-intake.jpg)
+
+## workroom messages
+
+![Deinkow](images/workroom-messages.jpg)
+

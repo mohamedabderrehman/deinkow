@@ -34,11 +34,11 @@
                     </a>
                     <!-- Guest buttons -->
                     <a href="/Login" class="btn btn-secondary guest-only">دخول</a>
-                    <a href="/Register" class="btn btn-primary guest-only">اطلب مشروعك الآن</a>
+                    <a href="/register" class="btn btn-primary guest-only">اطلب مشروعك الآن</a>
                     <!-- User buttons -->
-                    <a href="/Dashboard" class="nav-link user-only" style="display:none;">لوحة التحكم</a>
+                    <a href="/dashboard" class="nav-link user-only" style="display:none;">لوحة التحكم</a>
                     <a href="/Support" class="nav-link user-only" style="display:none;">الدعم الفني</a>
-                    <a href="/Profile" class="nav-link user-only" style="display:none;">الملف الشخصي</a>
+                    <a href="/profile" class="nav-link user-only" style="display:none;">الملف الشخصي</a>
                     <button class="btn btn-outline user-only" style="display:none;" onclick="API.auth.logout()">خروج</button>
                 </nav>
             </div>
@@ -606,7 +606,7 @@
                                 </div>
                             ` : '<p style="text-align: center; color: var(--text-gray); padding: 20px;">لا توجد ردود بعد</p>'}
                             <div style="margin-top: 24px; display: flex; gap: 12px; justify-content: flex-end;">
-                                <a href="/Workroom?id=${ticket.id}" class="btn btn-primary">فتح في Workroom</a>
+                                <a href="/workroom?id=${ticket.id}" class="btn btn-primary">فتح في Workroom</a>
                                 <button class="btn btn-secondary" onclick="this.closest('.ticket-detail-modal').remove()">إغلاق</button>
                             </div>
                         </div>

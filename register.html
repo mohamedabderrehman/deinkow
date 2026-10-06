@@ -105,7 +105,7 @@
                         Telegram
                     </a>
                     <a href="/Login" class="btn btn-secondary">دخول</a>
-                    <a href="/Register" class="btn btn-primary">اطلب مشروعك الآن</a>
+                    <a href="/register" class="btn btn-primary">اطلب مشروعك الآن</a>
                 </nav>
             </div>
         </div>
@@ -518,7 +518,7 @@
                         await new Promise(resolve => setTimeout(resolve, 1500));
                         
                         // Redirect to dashboard
-                        window.location.href = '/Dashboard';
+                        window.location.href = '/dashboard';
                     } else {
                         LoadingSpinner.hide(registerForm);
                         Toast.warning('تم إنشاء الحساب لكن لم يتم استلام رمز المصادقة. يرجى تسجيل الدخول.');

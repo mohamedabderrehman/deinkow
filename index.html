@@ -61,12 +61,12 @@
     <script src="js/api.js"></script>
     <script src="js/utils.js"></script>
 </head>
-<body>
+<body><div role="status" style="padding:10px;text-align:center;font-size:12px;background:#172038;color:#e2e8f0">عرض محفظة أعمال. الأرقام والشهادات المعروضة محتوى تقديمي وليست إحصاءات استخدام موثقة.</div>
     <!-- Header -->
     <header class="header">
         <div class="container">
             <div class="header-content">
-                <a href="/Home" class="logo" aria-label="Deinkow Home" role="link" tabindex="0">
+                <a href="/home" class="logo" aria-label="Deinkow Home" role="link" tabindex="0">
                     <img src="logo.png" alt="Deinkow Logo" class="logo-image" loading="lazy" width="120" height="40">
                 </a>
                 <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mainNav" type="button" tabindex="0">
@@ -82,11 +82,11 @@
                         Telegram
                     </a>
                     <!-- Guest buttons (shown when not logged in) -->
-                    <a href="/Login" class="btn btn-secondary guest-only" role="link" tabindex="0" aria-label="تسجيل الدخول">دخول</a>
-                    <a href="/Register" class="btn btn-primary guest-only" role="link" tabindex="0" aria-label="طلب مشروع جديد">اطلب مشروعك الآن</a>
+                    <a href="/login" class="btn btn-secondary guest-only" role="link" tabindex="0" aria-label="تسجيل الدخول">دخول</a>
+                    <a href="/register" class="btn btn-primary guest-only" role="link" tabindex="0" aria-label="طلب مشروع جديد">اطلب مشروعك الآن</a>
                     <!-- User buttons (shown when logged in) -->
-                    <a href="/Dashboard" class="nav-link user-only" style="display:none;" role="link" tabindex="0" aria-label="لوحة التحكم">لوحة التحكم</a>
-                    <a href="/Profile" class="nav-link user-only" style="display:none;" role="link" tabindex="0" aria-label="الملف الشخصي">الملف الشخصي</a>
+                    <a href="/dashboard" class="nav-link user-only" style="display:none;" role="link" tabindex="0" aria-label="لوحة التحكم">لوحة التحكم</a>
+                    <a href="/profile" class="nav-link user-only" style="display:none;" role="link" tabindex="0" aria-label="الملف الشخصي">الملف الشخصي</a>
                     <button class="btn btn-outline user-only" style="display:none;" onclick="API.auth.logout()" aria-label="تسجيل الخروج" type="button" tabindex="0">خروج</button>
                 </nav>
                 <nav class="mobile-nav" id="mobileNav" role="navigation" aria-label="Mobile navigation">
@@ -96,10 +96,10 @@
                         </svg>
                         Telegram
                     </a>
-                    <a href="/Login" class="btn btn-secondary guest-only">دخول</a>
-                    <a href="/Register" class="btn btn-primary guest-only">اطلب مشروعك الآن</a>
-                    <a href="/Dashboard" class="nav-link user-only" style="display:none;">لوحة التحكم</a>
-                    <a href="/Profile" class="nav-link user-only" style="display:none;">الملف الشخصي</a>
+                    <a href="/login" class="btn btn-secondary guest-only">دخول</a>
+                    <a href="/register" class="btn btn-primary guest-only">اطلب مشروعك الآن</a>
+                    <a href="/dashboard" class="nav-link user-only" style="display:none;">لوحة التحكم</a>
+                    <a href="/profile" class="nav-link user-only" style="display:none;">الملف الشخصي</a>
                     <button class="btn btn-outline user-only" style="display:none;" onclick="API.auth.logout()">خروج</button>
                 </nav>
             </div>
@@ -125,13 +125,13 @@
                     نبرمج بأي لغة أو تقنية حسب طلبك. أسعار معقولة وتنفيذ احترافي.
                 </p>
                 <div class="hero-cta">
-                    <a href="/Register" class="btn btn-primary btn-large" aria-label="اطلب مشروعك الآن">
+                    <a href="/register" class="btn btn-primary btn-large" aria-label="اطلب مشروعك الآن">
                         اطلق مشروعك ضرك
                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                             <path d="M12.5 5L7.5 10L12.5 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
                     </a>
-                    <a href="/Login" class="btn btn-outline btn-large" aria-label="دخول">دخول</a>
+                    <a href="/login" class="btn btn-outline btn-large" aria-label="دخول">دخول</a>
                 </div>
             </div>
         </div>
@@ -377,13 +377,13 @@
                 <h2 class="cta-title">جاهز تبدأ مشروعك البرمجي؟</h2>
                 <p class="cta-subtitle">اطلب مشروعك الآن واحصل على تنفيذ احترافي بأسعار معقولة.</p>
                 <div class="cta-buttons">
-                    <a href="/Register" class="btn btn-light" aria-label="اطلب مشروعك الآن">
+                    <a href="/register" class="btn btn-light" aria-label="اطلب مشروعك الآن">
                         اطلع مشروعك الآن
                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                             <path d="M12.5 5L7.5 10L12.5 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
                     </a>
-                    <a href="/Login" class="btn btn-blue" aria-label="دخول">دخول</a>
+                    <a href="/login" class="btn btn-blue" aria-label="دخول">دخول</a>
                 </div>
             </div>
         </div>
@@ -402,8 +402,8 @@
                 <div class="footer-column">
                     <h4 class="footer-heading">الخدمات</h4>
                     <ul class="footer-links">
-                        <li><a href="/Dashboard">لوحة التحكم</a></li>
-                        <li><a href="/RequestProject">طلب مشروع جديد</a></li>
+                        <li><a href="/dashboard">لوحة التحكم</a></li>
+                        <li><a href="/requestproject">طلب مشروع جديد</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">

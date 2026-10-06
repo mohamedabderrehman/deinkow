@@ -77,6 +77,8 @@ RewriteRule ^ - [L]
 
 # Public pages resolve to actual HTML before the private application fallback.
 DirectoryIndex index.html
+RewriteRule ^login/?$ signin.html [L,NC]
+RewriteRule ^requestproject/?$ request-project.html [L,NC]
 RewriteRule ^(?:home|Home)/?$ index.html [L]
 RewriteCond %{DOCUMENT_ROOT}/$1.html -f
 RewriteRule ^([a-zA-Z0-9_-]+)/?$ $1.html [L]

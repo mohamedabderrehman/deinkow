@@ -1,26 +1,40 @@
-# الإعداد
+# الإعداد الكامل
 
-استخدم PHP مع PDO MySQL وcURL وfileinfo وMySQL. استورد `database.sql` ثم `database_updates.sql` مع فحص المخطط قبل إعادة التحديثات. اضبط متغيرات قاعدة البيانات ومفتاح JWT جديداً. يلزم Apache مع mod_rewrite للمسارات النظيفة؛ خادم PHP التطويري لا يقرأ `.htaccess`. اضبط reCAPTCHA للمصادقة الحقيقية وصلاحيات مجلد الملفات.
+أنشئ MySQL أو MariaDB فارغة وصدّر متغيرات .env.example إلى بيئة PHP؛ لا يحمل PHP الملف تلقائياً. اضبط متغيرات DB_HOST وDB_PORT وDB_USER وDB_PASS وDB_NAME وسراً جديداً JWT_SECRET وDEMO_PASSWORD وDEMO_MODE=1. يطبق أمر التعبئة database.sql ثم database_support_tickets.sql ثم database_updates.sql وينشئ admin وclient وother. هو لقاعدة جديدة وليس لترحيل إنتاج. يتجاوز الخادم CAPTCHA في العرض فقط؛ يحتاج الوضع الحي RECAPTCHA_SITE_KEY وRECAPTCHA_SECRET_KEY جديدين.
 
-## التفاصيل والأوامر
+## الأوامر
 
-Use PHP with PDO MySQL, cURL and fileinfo plus MySQL. Import `database.sql` before `database_updates.sql`, inspecting existing schema before applying updates again. Export `DB_HOST`, `DB_NAME`, `DB_USER`, `DB_PASS` and a fresh `JWT_SECRET`. Apache with mod_rewrite supports clean URLs; the PHP development server alone does not interpret `.htaccess`. Configure reCAPTCHA for real authentication. Keep upload paths writable and protect private attachment access.
+```sh
+php tools/bootstrap.php
+php -S 127.0.0.1:8086 router.php
+# Separate terminal:
+python tools/check-demo.py
+python tools/check-syntax.py
+```
 
-## متغيرات تقرأها الشيفرة
+## جرد الإعداد
 
-| Variable | Source consumer | Configuration rule |
+| المتغير | موضع الاستخدام | قاعدة الإعداد |
 |---|---|---|
-| `CORS_ORIGIN` | `api/config.php` | Use the local example/source default; adapt to your disposable environment. |
-| `DB_HOST` | `api/config.php` | Use the local example/source default; adapt to your disposable environment. |
-| `DB_NAME` | `api/config.php` | Use the local example/source default; adapt to your disposable environment. |
-| `DB_PASS` | `api/config.php` | Supply privately when enabling its integration; no secret default. |
-| `DB_USER` | `api/config.php` | Use the local example/source default; adapt to your disposable environment. |
-| `DEBUG_MODE` | `api/config.php` | Use the local example/source default; adapt to your disposable environment. |
-| `JWT_SECRET` | `api/config.php` | Supply privately when enabling its integration; no secret default. |
-| `LEAKED_DATA_PATH` | `api/config.php` | Use the local example/source default; adapt to your disposable environment. |
-| `RECAPTCHA_SECRET_KEY` | `api/config.php` | Supply privately when enabling its integration; no secret default. |
-| `RECAPTCHA_SITE_KEY` | `api/config.php` | Use the local example/source default; adapt to your disposable environment. |
+| `CORS_ORIGIN` | `api/config.php` | استخدم المثال المحلي أو افتراضي الشيفرة واضبطه للبيئة المؤقتة. |
+| `DB_HOST` | `api/config.php` | استخدم المثال المحلي أو افتراضي الشيفرة واضبطه للبيئة المؤقتة. |
+| `DB_NAME` | `api/config.php` | استخدم المثال المحلي أو افتراضي الشيفرة واضبطه للبيئة المؤقتة. |
+| `DB_PASS` | `api/config.php` | قدم القيمة بصورة خاصة عند تفعيل التكامل، دون سر افتراضي. |
+| `DB_USER` | `api/config.php` | استخدم المثال المحلي أو افتراضي الشيفرة واضبطه للبيئة المؤقتة. |
+| `DEBUG_MODE` | `api/config.php` | استخدم المثال المحلي أو افتراضي الشيفرة واضبطه للبيئة المؤقتة. |
+| `JWT_SECRET` | `api/config.php` | قدم القيمة بصورة خاصة عند تفعيل التكامل، دون سر افتراضي. |
+| `LEAKED_DATA_PATH` | `api/config.php` | استخدم المثال المحلي أو افتراضي الشيفرة واضبطه للبيئة المؤقتة. |
+| `RECAPTCHA_SECRET_KEY` | `api/config.php` | قدم القيمة بصورة خاصة عند تفعيل التكامل، دون سر افتراضي. |
+| `RECAPTCHA_SITE_KEY` | `api/config.php` | استخدم المثال المحلي أو افتراضي الشيفرة واضبطه للبيئة المؤقتة. |
 
-لا تُحمَّل ملفات الأمثلة تلقائياً. تستخدم وحدات dotenv الملف حيث تكون مهيأة، ويستخدم PHP بيئة العملية أو الاستضافة. افصل المزودين عن العرض وأنشئ أسراراً جديدة واحفظها خارج المستودع.
+ليست كل متغيرات الجرد إلزامية. تحدد الفقرة الأولى قيم التشغيل الأساسية، وتلزم قيم المزود للتكامل الحي المفعل فقط. تتجاوز DEMO_API_URL هدف الفحص المحلي عند دعمه. لا توجه أوامر التعبئة والاستعادة والفحص لقاعدة إنتاج. لا تُحمّل أمثلة البيئة نفسها تلقائياً؛ جهز بيئة العملية أو dotenv حيث يستخدمه المكون.
 
-## أوامر المكونات
+## المكونات
+
+| المكون | المسؤولية |
+|---|---|
+| `js/` | الموجه ووحدات الصفحات والواجهة |
+| `css/` | عرض RTL بوحدات CSS |
+| `api/` | مصادقة PHP والتذاكر والدردشة والملفات والإدارة |
+| `database.sql` | المخطط الأساسي |
+| `database_updates.sql` | تحديثات المخطط التدريجية |

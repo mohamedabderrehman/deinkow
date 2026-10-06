@@ -34,7 +34,7 @@ class Router {
 
   normalizeRoute(path) {
     // Remove leading/trailing slashes and normalize
-    let route = path.replace(/^\/+|\/+$/g, '').replace(/\.html$/, '');
+    let route = path.replace(/^\/+|\/+$/g, '').replace(/\.html$/, '').toLowerCase();
     if (!route || ['app', 'index'].includes(route)) route = 'dashboard';
     return '/' + route;
   }

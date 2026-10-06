@@ -33,9 +33,9 @@
                     </a>
                     <a href="/Templates" class="nav-link active">نماذج جاهزة</a>
                     <a href="/Team" class="nav-link">الفريق</a>
-                    <a href="/RequestProject" class="nav-link">طلب مشروع جديد</a>
-                    <a href="/Dashboard" class="nav-link user-only" style="display:none;">لوحة التحكم</a>
-                    <a href="/Profile" class="nav-link user-only" style="display:none;">الملف الشخصي</a>
+                    <a href="/request-project" class="nav-link">طلب مشروع جديد</a>
+                    <a href="/dashboard" class="nav-link user-only" style="display:none;">لوحة التحكم</a>
+                    <a href="/profile" class="nav-link user-only" style="display:none;">الملف الشخصي</a>
                     <a href="/Login" class="btn btn-secondary guest-only">دخول</a>
                     <button class="btn btn-secondary user-only" style="display:none;" onclick="API.auth.logout()">خروج</button>
                 </nav>
@@ -61,7 +61,7 @@
                 <div class="custom-project-card">
                     <h2>ما لقيتش اللي تحب؟</h2>
                     <p>اطلب مشروع مخصص حسب احتياجاتك بالضبط</p>
-                    <a href="/RequestProject" class="btn btn-primary btn-large">اطلب مشروع مخصص</a>
+                    <a href="/request-project" class="btn btn-primary btn-large">اطلب مشروع مخصص</a>
                 </div>
             </div>
         </div>
@@ -401,7 +401,7 @@
                 // Store template data in localStorage
                 localStorage.setItem('selectedTemplate', JSON.stringify(templateData));
                 // Redirect to support page
-                window.location.href = '/RequestProject?template=' + templateId;
+                window.location.href = '/request-project?template=' + templateId;
             }
         }
 

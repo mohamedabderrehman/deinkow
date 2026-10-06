@@ -5,7 +5,8 @@ require_once __DIR__ . '/../utils/auth.php';
 
 header('Content-Type: application/json');
 
-$userData = authenticate();
+try { $userData = authenticate(); }
+catch (Exception $e) { http_response_code(401); echo json_encode(['success'=>false,'message'=>'Authentication required']); exit; }
 $user = new User();
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {

@@ -31,8 +31,8 @@
                         </svg>
                         تيليغرام
                     </a>
-                    <a href="/Dashboard" class="nav-link">لوحة التحكم</a>
-                    <a href="/Profile" class="nav-link">الملف الشخصي</a>
+                    <a href="/dashboard" class="nav-link">لوحة التحكم</a>
+                    <a href="/profile" class="nav-link">الملف الشخصي</a>
                     <button class="btn btn-secondary" onclick="API.auth.logout()">خروج</button>
                 </nav>
             </div>
@@ -608,7 +608,7 @@
 
             if (!currentTicketId) {
                 Toast.error('معرف المشروع غير موجود');
-                setTimeout(() => window.location.href = '/Dashboard', 2000);
+                setTimeout(() => window.location.href = '/dashboard', 2000);
                 return;
             }
 

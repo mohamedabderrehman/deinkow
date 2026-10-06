@@ -813,8 +813,8 @@
                             </svg>
                             <span class="notification-badge" id="notificationBadge" style="display: none;">0</span>
                         </div>
-                        <a href="/Dashboard" class="nav-link">لوحة التحكم</a>
-                        <a href="/Profile" class="nav-link">الملف الشخصي</a>
+                        <a href="/dashboard" class="nav-link">لوحة التحكم</a>
+                        <a href="/profile" class="nav-link">الملف الشخصي</a>
                         <button class="btn btn-outline" onclick="API.auth.logout()">خروج</button>
                     </nav>
                 </div>
@@ -3283,7 +3283,7 @@
                         <option value="resolved" ${ticket.status === 'resolved' ? 'selected' : ''}>مكتمل</option>
                         <option value="closed" ${ticket.status === 'closed' ? 'selected' : ''}>مغلق</option>
                     </select>
-                    <a href="/Workroom?id=${ticket.id}" target="_blank" class="btn btn-secondary btn-sm" style="padding: 10px 20px; font-size: 14px;">فتح Workroom</a>
+                    <a href="/workroom?id=${ticket.id}" target="_blank" class="btn btn-secondary btn-sm" style="padding: 10px 20px; font-size: 14px;">فتح Workroom</a>
                 </div>
             `;
             

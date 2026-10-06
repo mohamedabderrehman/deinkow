@@ -90,3 +90,22 @@ Open an issue describing a reproducible problem, expected behavior and component
 ## License and attribution
 
 Source code is MIT licensed. Third-party dependencies and assets retain their own terms; see [attribution](THIRD_PARTY_NOTICES.md).
+
+<!-- release-presentation -->
+
+## Actual application interface
+
+![Deinkow — interface with synthetic demonstration data](docs/images/studio-desktop.jpg)
+
+Captured from the local application with synthetic records. This does not establish production usage or Android device verification.
+
+## Verification and deeper reading
+
+Fresh MariaDB schema/bootstrap and PHP syntax checks passed. HTTP checks passed client/admin login, request and message creation, foreign ticket/chat rejection, validated text attachment upload, blocked direct attachment access, authorized download and unauthorized download rejection. Browser review exposed and repaired login aliases and the demo CAPTCHA dependency.
+
+The public site and client portal mix standalone HTML pages and client-side routing; do not describe every route as one SPA. CAPTCHA and mail/provider configuration require fresh live credentials. Additional browser-history and administrative workflows remain to be checked.
+
+- [Case study](docs/case-study.md)
+- [Verification](docs/verification.md)
+- [Architecture diagram](docs/architecture.svg)
+- [Portfolio case study](https://mohamed-abderrehmane-portfolio.wry-dog-0796.chatgpt.site/projects/deinkow/)

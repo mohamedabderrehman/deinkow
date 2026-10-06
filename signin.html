@@ -16,76 +16,22 @@
     <link rel="stylesheet" href="styles.css">
     <script src="js/api.js"></script>
     <script src="js/utils.js"></script>
-    <!-- Google reCAPTCHA v2 Checkbox -->
-    <script src="https://www.google.com/recaptcha/api.js?onload=onRecaptchaLoad&render=explicit" async defer></script>
     <script>
-        // Callback function for reCAPTCHA
+        const publicConfig = fetch('/api/health.php').then(r => r.json());
         function onRecaptchaLoad() {
-            console.log('reCAPTCHA script loaded');
-            // Render reCAPTCHA widget
-            if (typeof grecaptcha !== 'undefined') {
-                const recaptchaContainer = document.getElementById('recaptcha-container');
-                if (recaptchaContainer) {
-                    try {
-                        grecaptcha.render(recaptchaContainer, {
-                            'sitekey': '6LdiM0ksAAAAAPsZ5NEZEmthOJK-MA5c6upq9uhM',
-                            'callback': function(token) {
-                                console.log('reCAPTCHA verified:', token);
-                                const errorDiv = document.getElementById('recaptcha-error');
-                                if (errorDiv) errorDiv.style.display = 'none';
-                            },
-                            'expired-callback': function() {
-                                console.log('reCAPTCHA expired');
-                                Toast.warning('انتهت صلاحية reCAPTCHA. يرجى إعادة التحقق.');
-                            },
-                            'error-callback': function() {
-                                console.error('reCAPTCHA error');
-                                const errorDiv = document.getElementById('recaptcha-error');
-                                if (errorDiv) {
-                                    errorDiv.textContent = '⚠️ حدث خطأ في reCAPTCHA. يرجى تحديث الصفحة.';
-                                    errorDiv.style.display = 'block';
-                                }
-                                Toast.error('حدث خطأ في reCAPTCHA. يرجى تحديث الصفحة.');
-                            }
-                        });
-                        console.log('reCAPTCHA widget rendered successfully');
-                    } catch (error) {
-                        console.error('Error rendering reCAPTCHA:', error);
-                        const errorDiv = document.getElementById('recaptcha-error');
-                        if (errorDiv) {
-                            errorDiv.textContent = '⚠️ فشل تحميل reCAPTCHA. يرجى التحقق من Domain في Google reCAPTCHA Console.';
-                            errorDiv.style.display = 'block';
-                        }
-                    }
-                } else {
-                    console.error('reCAPTCHA container not found');
-                }
-            } else {
-                console.error('grecaptcha is not defined');
-                const errorDiv = document.getElementById('recaptcha-error');
-                if (errorDiv) {
-                    errorDiv.textContent = '⚠️ فشل تحميل reCAPTCHA script. يرجى التحقق من اتصال الإنترنت.';
-                    errorDiv.style.display = 'block';
-                }
-            }
+            publicConfig.then(config => {
+                if (!config.demoMode && config.recaptchaSiteKey) grecaptcha.render('recaptcha-container', {sitekey:config.recaptchaSiteKey});
+            });
         }
-        
-        // Fallback: Check if reCAPTCHA loaded after 5 seconds
-        window.addEventListener('load', function() {
-            setTimeout(function() {
-                const recaptchaContainer = document.getElementById('recaptcha-container');
-                if (recaptchaContainer) {
-                    const hasIframe = recaptchaContainer.querySelector('iframe');
-                    if (typeof grecaptcha === 'undefined' || !hasIframe) {
-                        console.error('reCAPTCHA failed to load after 5 seconds');
-                        const errorDiv = document.getElementById('recaptcha-error');
-                        if (errorDiv) {
-                            errorDiv.innerHTML = '⚠️ فشل تحميل reCAPTCHA. يرجى التحقق من:<br>1. اتصال الإنترنت<br>2. Domain مسجل في <a href="https://www.google.com/recaptcha/admin" target="_blank">Google reCAPTCHA Console</a><br>3. تحديث الصفحة';
-                            errorDiv.style.display = 'block';
-                        }
-                    }
-                }
-            }, 5000);
+        window.addEventListener('DOMContentLoaded', async () => {
+            const config = await publicConfig;
+            if (config.demoMode) {
+                document.getElementById('recaptcha-container').textContent = 'عرض اصطناعي محلي — استخدم حساب التجربة فقط';
+            } else if (config.recaptchaSiteKey) {
+                const script=document.createElement('script');
+                script.src='https://www.google.com/recaptcha/api.js?onload=onRecaptchaLoad&render=explicit';
+                script.async=true; document.head.appendChild(script);
+            }
         });
     </script>
 </head>
@@ -94,7 +40,7 @@
     <header class="header">
         <div class="container">
             <div class="header-content">
-                <a href="/Home" class="logo">
+                <a href="/home" class="logo">
                     <img src="logo.png" alt="Deinkow Logo" class="logo-image">
                 </a>
                 <nav class="nav">
@@ -104,8 +50,8 @@
                         </svg>
                         Telegram
                     </a>
-                    <a href="/Login" class="btn btn-secondary">دخول</a>
-                    <a href="/Register" class="btn btn-primary">اطلب مشروعك الآن</a>
+                    <a href="/login" class="btn btn-secondary">دخول</a>
+                    <a href="/register" class="btn btn-primary">اطلب مشروعك الآن</a>
                 </nav>
             </div>
         </div>
@@ -180,7 +126,7 @@
                     <div class="signin-footer">
                         <p class="signin-footer-text">
                             ما عندكش حساب؟ 
-                            <a href="/Register" class="signin-footer-link">سجل الآن</a>
+                            <a href="/register" class="signin-footer-link">سجل الآن</a>
                         </p>
                     </div>
                 </div>
@@ -236,7 +182,9 @@
                 // Get reCAPTCHA token (v2 Checkbox)
                 let recaptchaToken = '';
                 try {
-                    if (typeof grecaptcha !== 'undefined') {
+                    if ((await publicConfig).demoMode) {
+                        recaptchaToken = '';
+                    } else if (typeof grecaptcha !== 'undefined') {
                         recaptchaToken = grecaptcha.getResponse();
                         if (!recaptchaToken) {
                             Toast.error('يرجى إكمال التحقق من reCAPTCHA');
@@ -300,7 +248,7 @@
                     }
                     
                     // Redirect to dashboard
-                    window.location.href = '/Dashboard';
+                    window.location.href = '/dashboard';
                 } else {
                     LoadingSpinner.hide(form);
                     Toast.error(response.message || 'فشل تسجيل الدخول. يرجى التحقق من بياناتك.');

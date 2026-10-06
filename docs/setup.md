@@ -1,4 +1,18 @@
-# Setup and configuration
+# Clean setup
+
+Create an empty MySQL/MariaDB database and export the variables in .env.example into the PHP process environment; PHP does not automatically load that file. Set DB_HOST/DB_PORT/DB_USER/DB_PASS/DB_NAME, fresh JWT_SECRET, DEMO_PASSWORD and DEMO_MODE=1. The CLI bootstrap applies database.sql, database_support_tickets.sql and database_updates.sql in that order and creates admin/client/other. It is for a fresh database, not a migration tool for production. DEMO_MODE bypasses CAPTCHA only on the server; live mode requires fresh RECAPTCHA_SITE_KEY and RECAPTCHA_SECRET_KEY.
+
+## Commands
+
+```sh
+php tools/bootstrap.php
+php -S 127.0.0.1:8086 router.php
+# Separate terminal:
+python tools/check-demo.py
+python tools/check-syntax.py
+```
+
+## Complete configuration inventory
 
 Use PHP with PDO MySQL, cURL and fileinfo plus MySQL. Import `database.sql` before `database_updates.sql`, inspecting existing schema before applying updates again. Export `DB_HOST`, `DB_NAME`, `DB_USER`, `DB_PASS` and a fresh `JWT_SECRET`. Apache with mod_rewrite supports clean URLs; the PHP development server alone does not interpret `.htaccess`. Configure reCAPTCHA for real authentication. Keep upload paths writable and protect private attachment access.
 
@@ -32,3 +46,6 @@ Environment examples do not load themselves. Node dotenv modules read local `.en
 | `api/` | PHP authentication, tickets, chat, files and administration |
 | `database.sql` | Base schema |
 | `database_updates.sql` | Incremental schema changes |
+
+
+Variables in the inventory are not all mandatory: the preceding prerequisites identify the required core values. Provider variables are required only for their enabled live integration. Tests may use DEMO_API_URL to override the local target. Never point bootstrap/reset/check scripts at a production database.
