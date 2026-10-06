@@ -31,13 +31,13 @@
   },
   {
     "path": "README.ar.md",
-    "bytes": 6518,
-    "sha256": "29fc77f8efbac0e7ed6dd1121a01363d40838cc12f69d7d287f061636fe4b16f"
+    "bytes": 6598,
+    "sha256": "b0f696e1f7c3698b9cd0631f1f660b5c17a9afec0e8b0712b3fdb53c4de0e51c"
   },
   {
     "path": "README.md",
-    "bytes": 5507,
-    "sha256": "1d773f4353313a5cd6108ab1bc8daef1ec0b6bfb39b33bcc93e9e69663b4b2fc"
+    "bytes": 5575,
+    "sha256": "91a4296f7a44300915db10fa77fe97874be2fdf283a1b98c917ad084e9db7321"
   },
   {
     "path": "SECURITY.md",
@@ -553,6 +553,16 @@
     "path": "docs/images/workroom-messages.jpg",
     "bytes": 37630,
     "sha256": "2bd7c6a3aa480814becd819a5db0b1d0de8a836880af85ff9f501b5803ef7947"
+  },
+  {
+    "path": "docs/publication.ar.md",
+    "bytes": 711,
+    "sha256": "9d5b589656ce028e7bd1c3bd330e3dfc394475c411788b48bba22953750d4780"
+  },
+  {
+    "path": "docs/publication.md",
+    "bytes": 631,
+    "sha256": "40208e188088e5c799c566595ee2535fdfa77a139f19e4f32c5436023505da48"
   },
   {
     "path": "docs/setup.ar.md",
