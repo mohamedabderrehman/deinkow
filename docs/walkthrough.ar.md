@@ -20,3 +20,9 @@
 
 ![Deinkow](images/workroom-messages.jpg)
 
+
+## Video
+
+[MP4 walkthrough](videos/walkthrough.mp4)
+
+تسلسل محرر من لقطات الواجهة الفعلية ببيانات اصطناعية، دون فيديو جهاز متصل أو ادعاء فحص أندرويد.

@@ -20,3 +20,9 @@ Visitor explores studio services → client submits a request → client and adm
 
 ![Deinkow](images/workroom-messages.jpg)
 
+
+## Video
+
+[MP4 walkthrough](videos/walkthrough.mp4)
+
+An edited sequence of actual interface captures with synthetic data. It is not a continuous device recording or evidence of Android verification.

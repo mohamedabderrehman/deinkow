@@ -501,8 +501,8 @@
   },
   {
     "path": "docs/asset-manifest.json",
-    "bytes": 1194,
-    "sha256": "c60fedbeb9521922eafd21ad37da84e7c9c145109ae63625aff31b04da42fffe"
+    "bytes": 1385,
+    "sha256": "2ac6e6580c97be108fbe4695bd19aa29585214bea8efd7f3b085ab311255be1d"
   },
   {
     "path": "docs/case-study.ar.md",
@@ -575,14 +575,19 @@
     "sha256": "63e517c4390d798335bbf117ca45077b09fc797059ad7d10eb5915e7abba26bc"
   },
   {
+    "path": "docs/videos/walkthrough.mp4",
+    "bytes": 111800,
+    "sha256": "2dd692494f72e67495b7b092e2ec0557ca93caedaea1febdf986abf251771eb7"
+  },
+  {
     "path": "docs/walkthrough.ar.md",
-    "bytes": 806,
-    "sha256": "b86ee09641c74e01b77e36f4e296df4ad85eaa3bf3251f2a1eccd4638a67a549"
+    "bytes": 1041,
+    "sha256": "90e7c5f7af0d72ed693123de116c2ef55dbfca3dec28bb9bb900cd38d5f73dfd"
   },
   {
     "path": "docs/walkthrough.md",
-    "bytes": 714,
-    "sha256": "4dd2005d4d57ae7f606b2866235e71b001a3097f1b19ca0b93d2709d9d8fede5"
+    "bytes": 920,
+    "sha256": "03fe181c2f33c5e2812221b37d9a298be87d620f3d566bea53c1d423f36daa7d"
   },
   {
     "path": "examples/hero-section-example.html",
