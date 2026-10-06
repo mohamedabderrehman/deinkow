@@ -111,3 +111,5 @@ The public site and client portal mix standalone HTML pages and client-side rout
 - [Portfolio case study](https://mohamed-abderrehmane-portfolio.hillock-factual9mupt.chatgpt.site/projects/deinkow/)
 
 - [Interface walkthrough and video](docs/walkthrough.md)
+
+- [Engineering details and implementation lessons](docs/engineering-notes.md)
