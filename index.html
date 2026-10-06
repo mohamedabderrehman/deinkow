@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    
+    <!-- SEO Meta Tags -->
+    <title>deinkow — ستوديو برمجي وشبكة مطورين</title>
+    <meta name="description" content="deinkow — ستوديو برمجي وشبكة مطورين نخدمولك أي مشروع. بوتات، مواقع، تطبيقات، سكريبتات… قول وش تحب وإحنا نبرمجوه.">
+    <meta name="keywords" content="برمجة, تطوير, بوتات, مواقع, تطبيقات, سكريبتات, Deinkow, مبرمجين, برمجة مخصصة, تطوير برمجيات">
+    <meta name="author" content="Deinkow">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="Arabic">
+    <meta name="revisit-after" content="7 days">
+    <link rel="canonical" href="https://deinkow.com/">
+    
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Deinkow",
+      "description": "ستوديو برمجي وشبكة مطورين نخدمولك أي مشروع",
+      "url": "https://deinkow.com",
+      "logo": "https://deinkow.com/logo.png",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "customer service",
+        "availableLanguage": "Arabic"
+      },
+      "sameAs": [
+        "https://t.me/Deinkow"
+      ]
+    }
+    </script>
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://Deinkow.com/">
+    <meta property="og:title" content="deinkow — ستوديو برمجي وشبكة مطورين">
+    <meta property="og:description" content="ستوديو برمجي وشبكة مطورين نخدمولك أي مشروع. بوتات، مواقع، تطبيقات، سكريبتات…">
+    <meta property="og:image" content="https://Deinkow.com/images/og-image.jpg">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://Deinkow.com/">
+    <meta property="twitter:title" content="deinkow — ستوديو برمجي وشبكة مطورين">
+    <meta property="twitter:description" content="ستوديو برمجي وشبكة مطورين نخدمولك أي مشروع. بوتات، مواقع، تطبيقات، سكريبتات…">
+    <meta property="twitter:image" content="https://Deinkow.com/images/twitter-image.jpg">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="favicon.ico">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="styles.css">
+    <script src="js/api.js"></script>
+    <script src="js/utils.js"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="/Home" class="logo" aria-label="Deinkow Home" role="link" tabindex="0">
+                    <img src="logo.png" alt="Deinkow Logo" class="logo-image" loading="lazy" width="120" height="40">
+                </a>
+                <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mainNav" type="button" tabindex="0">
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                </button>
+                <nav class="nav" id="mainNav" role="navigation" aria-label="Main navigation">
+                    <a href="https://t.me/Deinkow" target="_blank" rel="noopener noreferrer" class="nav-link telegram-link" aria-label="Telegram Channel">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM16.64 8.8C16.49 10.38 15.84 14.22 15.51 15.99C15.37 16.74 15.09 16.99 14.83 17.02C14.25 17.07 13.81 16.64 13.25 16.27C12.37 15.69 11.87 15.33 11.02 14.77C10.03 14.12 10.67 13.76 11.24 13.18C11.39 13.03 13.95 10.7 14 10.49C14.0077 10.4582 14.0077 10.4246 14 10.393C13.97 10.29 13.89 10.23 13.8 10.18C13.68 10.12 13.55 10.15 13.44 10.18C13.28 10.24 11.95 11.16 9.4 12.61C8.89 12.88 8.42 13.02 8 13.02C7.54 13.02 6.63 12.8 5.95 12.61C5.25 12.41 4.68 12.3 4.73 11.94C4.75 11.79 5.01 11.63 5.5 11.45C8.11 10.44 10.25 9.65 11.93 9.08C14.49 8.2 15.25 7.95 15.54 7.95C15.63 7.95 15.83 7.98 15.96 8.09C16.07 8.18 16.1 8.3 16.11 8.38C16.12 8.46 16.14 8.63 16.13 8.79L16.64 8.8Z" fill="currentColor"/>
+                        </svg>
+                        Telegram
+                    </a>
+                    <!-- Guest buttons (shown when not logged in) -->
+                    <a href="/Login" class="btn btn-secondary guest-only" role="link" tabindex="0" aria-label="تسجيل الدخول">دخول</a>
+                    <a href="/Register" class="btn btn-primary guest-only" role="link" tabindex="0" aria-label="طلب مشروع جديد">اطلب مشروعك الآن</a>
+                    <!-- User buttons (shown when logged in) -->
+                    <a href="/Dashboard" class="nav-link user-only" style="display:none;" role="link" tabindex="0" aria-label="لوحة التحكم">لوحة التحكم</a>
+                    <a href="/Profile" class="nav-link user-only" style="display:none;" role="link" tabindex="0" aria-label="الملف الشخصي">الملف الشخصي</a>
+                    <button class="btn btn-outline user-only" style="display:none;" onclick="API.auth.logout()" aria-label="تسجيل الخروج" type="button" tabindex="0">خروج</button>
+                </nav>
+                <nav class="mobile-nav" id="mobileNav" role="navigation" aria-label="Mobile navigation">
+                    <a href="https://t.me/Deinkow" target="_blank" rel="noopener noreferrer" class="nav-link telegram-link" aria-label="Telegram Channel">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM16.64 8.8C16.49 10.38 15.84 14.22 15.51 15.99C15.37 16.74 15.09 16.99 14.83 17.02C14.25 17.07 13.81 16.64 13.25 16.27C12.37 15.69 11.87 15.33 11.02 14.77C10.03 14.12 10.67 13.76 11.24 13.18C11.39 13.03 13.95 10.7 14 10.49C14.0077 10.4582 14.0077 10.4246 14 10.393C13.97 10.29 13.89 10.23 13.8 10.18C13.68 10.12 13.55 10.15 13.44 10.18C13.28 10.24 11.95 11.16 9.4 12.61C8.89 12.88 8.42 13.02 8 13.02C7.54 13.02 6.63 12.8 5.95 12.61C5.25 12.41 4.68 12.3 4.73 11.94C4.75 11.79 5.01 11.63 5.5 11.45C8.11 10.44 10.25 9.65 11.93 9.08C14.49 8.2 15.25 7.95 15.54 7.95C15.63 7.95 15.83 7.98 15.96 8.09C16.07 8.18 16.1 8.3 16.11 8.38C16.12 8.46 16.14 8.63 16.13 8.79L16.64 8.8Z" fill="currentColor"/>
+                        </svg>
+                        Telegram
+                    </a>
+                    <a href="/Login" class="btn btn-secondary guest-only">دخول</a>
+                    <a href="/Register" class="btn btn-primary guest-only">اطلب مشروعك الآن</a>
+                    <a href="/Dashboard" class="nav-link user-only" style="display:none;">لوحة التحكم</a>
+                    <a href="/Profile" class="nav-link user-only" style="display:none;">الملف الشخصي</a>
+                    <button class="btn btn-outline user-only" style="display:none;" onclick="API.auth.logout()">خروج</button>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <button class="badge">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M8 1L1 4.5V8C1 11.866 4.134 15 8 15C11.866 15 15 11.866 15 8V4.5L8 1Z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                    </svg>
+                    مجمع مبرمجين محترفين
+                </button>
+                <h1 class="hero-title">
+                    <span class="title-blue">deinkow</span>
+                </h1>
+                <h2 class="hero-subtitle">ستوديو برمجي وشبكة مطورين نخدمولك أي مشروع</h2>
+                <p class="hero-description">
+                    بوتات، مواقع، تطبيقات، سكريبتات، أنظمة مخصصة… قول وش تحب وإحنا نبرمجوه. 
+                    نبرمج بأي لغة أو تقنية حسب طلبك. أسعار معقولة وتنفيذ احترافي.
+                </p>
+                <div class="hero-cta">
+                    <a href="/Register" class="btn btn-primary btn-large" aria-label="اطلب مشروعك الآن">
+                        اطلق مشروعك ضرك
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <path d="M12.5 5L7.5 10L12.5 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+                    <a href="/Login" class="btn btn-outline btn-large" aria-label="دخول">دخول</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Statistics Section -->
+    <section class="statistics">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">150+</div>
+                    <div class="stat-label">مشروع مكتمل</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">عميل راضي</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">15+</div>
+                    <div class="stat-label">لغة برمجة</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">دعم فني</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Services Section -->
+    <section class="services">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">خدماتنا</h2>
+                <p class="section-subtitle">نقدم ليك كل شي برمجي تحتاجه</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon blue">
+                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="12" y="20" width="24" height="20" rx="2" stroke="currentColor" stroke-width="2" fill="none"/>
+                            <path d="M18 20V16C18 12.6863 20.6863 10 24 10C27.3137 10 30 12.6863 30 16V20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            <circle cx="24" cy="28" r="2" fill="currentColor"/>
+                        </svg>
+                    </div>
+                    <h3 class="service-title">تطوير البوتات</h3>
+                    <ul class="service-features">
+                        <li>
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M16.6667 5L7.50004 14.1667L3.33337 10" stroke="#2563EB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            بوتات Telegram و Discord
+                        </li>
+                        <li>
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M16.6667 5L7.50004 14.1667L3.33337 10" stroke="#2563EB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            بوتات WhatsApp و Instagram
+                        </li>
+                        <li>
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M16.6667 5L7.50004 14.1667L3.33337 10" stroke="#2563EB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            بوتات مخصصة حسب طلبك
+                        </li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon blue">
+                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="8" y="12" width="32" height="24" rx="2" stroke="currentColor" stroke-width="2" fill="none"/>
+                            <path d="M16 12V8C16 6.89543 16.8954 6 18 6H30C31.1046 6 32 6.89543 32 8V12" stroke="currentColor" stroke-width="2"/>
+                            <circle cx="24" cy="22" r="3" fill="currentColor"/>
+                        </svg>
+                    </div>
+                    <h3 class="service-title">تطوير المواقع</h3>
+                    <ul class="service-features">
+                        <li>
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M16.6667 5L7.50004 14.1667L3.33337 10" stroke="#2563EB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            مواقع ويب احترافية
+                        </li>
+                        <li>
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M16.6667 5L7.50004 14.1667L3.33337 10" stroke="#2563EB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            متاجر إلكترونية كاملة
+                        </li>
+                        <li>
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M16.6667 5L7.50004 14.1667L3.33337 10" stroke="#2563EB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            لوحات تحكم مخصصة
+                        </li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon blue">
+                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="10" y="8" width="28" height="32" rx="2" stroke="currentColor" stroke-width="2" fill="none"/>
+                            <circle cx="24" cy="20" r="4" fill="currentColor"/>
+                            <path d="M18 32C18 28.6863 20.6863 26 24 26C27.3137 26 30 28.6863 30 32" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <h3 class="service-title">تطوير التطبيقات</h3>
+                    <ul class="service-features">
+                        <li>
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M16.6667 5L7.50004 14.1667L3.33337 10" stroke="#2563EB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            تطبيقات Android و iOS
+                        </li>
+                        <li>
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M16.6667 5L7.50004 14.1667L3.33337 10" stroke="#2563EB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            تطبيقات سطح المكتب
+                        </li>
+                        <li>
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M16.6667 5L7.50004 14.1667L3.33337 10" stroke="#2563EB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            تطبيقات ويب متقدمة
+                        </li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon blue">
+                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 8L24 4L36 8V20C36 28.8366 28.8366 36 20 36C11.1634 36 4 28.8366 4 20V8L12 8Z" stroke="currentColor" stroke-width="2" fill="none"/>
+                            <path d="M16 20L20 24L32 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <h3 class="service-title">السكريبتات</h3>
+                    <ul class="service-features">
+                        <li>
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M16.6667 5L7.50004 14.1667L3.33337 10" stroke="#2563EB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            سكريبتات Python و JavaScript
+                        </li>
+                        <li>
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M16.6667 5L7.50004 14.1667L3.33337 10" stroke="#2563EB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            أتمتة المهام
+                        </li>
+                        <li>
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M16.6667 5L7.50004 14.1667L3.33337 10" stroke="#2563EB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            حلول برمجية مخصصة
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Platform Features Section -->
+    <section class="features">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">علاه تختار Deinkow؟</h2>
+                <p class="section-subtitle">نقدم ليك أفضل خدمة برمجية</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon blue">
+                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M24 8L28 20L40 24L28 28L24 40L20 28L8 24L20 20L24 8Z" stroke="currentColor" stroke-width="2" fill="none"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">تنفيذ سريع</h3>
+                    <p class="feature-description">نكمل مشاريعك في وقت قياسي بدون ما نضيع وقتك.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon blue">
+                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="12" y="20" width="24" height="20" rx="2" stroke="currentColor" stroke-width="2" fill="none"/>
+                            <path d="M18 20V16C18 12.6863 20.6863 10 24 10C27.3137 10 30 12.6863 30 16V20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">جودة عالية</h3>
+                    <p class="feature-description">كود نظيف ومنظم، مواصفات احترافية، وضمان على العمل.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon blue">
+                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="24" cy="24" r="16" stroke="currentColor" stroke-width="2" fill="none"/>
+                            <path d="M24 8V24L32 32" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">دعم مستمر</h3>
+                    <p class="feature-description">نكون معاك من أول خطوة لحد ما المشروع يكتمل.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon blue">
+                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="8" y="16" width="32" height="24" rx="2" stroke="currentColor" stroke-width="2" fill="none"/>
+                            <path d="M16 16V12C16 9.79086 17.7909 8 20 8H28C30.2091 8 32 9.79086 32 12V16" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">أسعار معقولة</h3>
+                    <p class="feature-description">أسعار مناسبة للجميع، بدون ما تدفع مبالغ خيالية.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon blue">
+                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="24" cy="24" r="10" stroke="currentColor" stroke-width="2" fill="none"/>
+                            <circle cx="12" cy="12" r="2" fill="currentColor"/>
+                            <circle cx="36" cy="12" r="2" fill="currentColor"/>
+                            <circle cx="12" cy="36" r="2" fill="currentColor"/>
+                            <circle cx="36" cy="36" r="2" fill="currentColor"/>
+                            <line x1="12" y1="12" x2="20" y2="20" stroke="currentColor" stroke-width="1.5"/>
+                            <line x1="36" y1="12" x2="28" y2="20" stroke="currentColor" stroke-width="1.5"/>
+                            <line x1="12" y1="36" x2="20" y2="28" stroke="currentColor" stroke-width="1.5"/>
+                            <line x1="36" y1="36" x2="28" y2="28" stroke="currentColor" stroke-width="1.5"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">أي لغة برمجة</h3>
+                    <p class="feature-description">Python, JavaScript, PHP, Java, C++… أي لغة تحبها.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon blue">
+                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M24 4L8 10V22C8 30.8366 15.1634 38 24 38C32.8366 38 40 30.8366 40 22V10L24 4Z" stroke="currentColor" stroke-width="2" fill="none"/>
+                            <path d="M24 16L18 18V22C18 24.2091 19.7909 26 22 26H26C28.2091 26 30 24.2091 30 22V18L24 16Z" stroke="currentColor" stroke-width="2" fill="none"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">مشاريع معقدة</h3>
+                    <p class="feature-description">مهما كان المشروع معقد، إحنا جاهزين نبرمجوه.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action Section -->
+    <section class="cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2 class="cta-title">جاهز تبدأ مشروعك البرمجي؟</h2>
+                <p class="cta-subtitle">اطلب مشروعك الآن واحصل على تنفيذ احترافي بأسعار معقولة.</p>
+                <div class="cta-buttons">
+                    <a href="/Register" class="btn btn-light" aria-label="اطلب مشروعك الآن">
+                        اطلع مشروعك الآن
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <path d="M12.5 5L7.5 10L12.5 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+                    <a href="/Login" class="btn btn-blue" aria-label="دخول">دخول</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <div class="footer-logo">
+                        <span class="logo-text">Deinkow</span>
+                    </div>
+                    <p class="footer-description">مجمع مبرمجين محترفين يخدمولك أي مشروع برمجي</p>
+                </div>
+                <div class="footer-column">
+                    <h4 class="footer-heading">الخدمات</h4>
+                    <ul class="footer-links">
+                        <li><a href="/Dashboard">لوحة التحكم</a></li>
+                        <li><a href="/RequestProject">طلب مشروع جديد</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4 class="footer-heading">الدعم</h4>
+                    <ul class="footer-links">
+                        <li><a href="#" aria-label="مركز المساعدة">مركز المساعدة</a></li>
+                        <li><a href="#" aria-label="التوثيق">التوثيق</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4 class="footer-heading">قانوني</h4>
+                    <ul class="footer-links">
+                        <li><a href="#" aria-label="سياسة الخصوصية">سياسة الخصوصية</a></li>
+                        <li><a href="#" aria-label="شروط الخدمة">شروط الخدمة</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Deinkow. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Check if user is logged in and update navigation
+        document.addEventListener('DOMContentLoaded', function() {
+            const token = API.getAuthToken();
+            const guestElements = document.querySelectorAll('.guest-only');
+            const userElements = document.querySelectorAll('.user-only');
+            const mainNav = document.getElementById('mainNav');
+            const mobileNav = document.getElementById('mobileNav');
+            
+            if (token) {
+                // User is logged in - show user buttons, hide guest buttons
+                guestElements.forEach(el => el.style.display = 'none');
+                userElements.forEach(el => el.style.display = '');
+            } else {
+                // User is not logged in - show guest buttons, hide user buttons
+                guestElements.forEach(el => el.style.display = '');
+                userElements.forEach(el => el.style.display = 'none');
+            }
+
+            // Mobile menu toggle
+            const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+            if (mobileMenuToggle) {
+                mobileMenuToggle.addEventListener('click', function() {
+                    const isExpanded = this.getAttribute('aria-expanded') === 'true';
+                    this.classList.toggle('active');
+                    mobileNav.classList.toggle('active');
+                    this.setAttribute('aria-expanded', !isExpanded);
+                });
+
+                // Close mobile menu when clicking outside
+                document.addEventListener('click', function(e) {
+                    if (!mobileMenuToggle.contains(e.target) && !mobileNav.contains(e.target)) {
+                        mobileMenuToggle.classList.remove('active');
+                        mobileNav.classList.remove('active');
+                        mobileMenuToggle.setAttribute('aria-expanded', 'false');
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

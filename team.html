@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>الفريق - deinkow</title>
+    <meta name="description" content="تعرف على فريق deinkow - ستوديو برمجي وشبكة مطورين">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="styles.css">
+    <script src="js/api.js"></script>
+    <script src="js/utils.js"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="/Home" class="logo">
+                    <img src="logo.png" alt="deinkow Logo" class="logo-image">
+                </a>
+                <nav class="nav">
+                    <a href="https://t.me/Deinkow" target="_blank" rel="noopener noreferrer" class="nav-link telegram-link" aria-label="Telegram Channel">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM16.64 8.8C16.49 10.38 15.84 14.22 15.51 15.99C15.37 16.74 15.09 16.99 14.83 17.02C14.25 17.07 13.81 16.64 13.25 16.27C12.37 15.69 11.87 15.33 11.02 14.77C10.03 14.12 10.67 13.76 11.24 13.18C11.39 13.03 13.95 10.7 14 10.49C14.0077 10.4582 14.0077 10.4246 14 10.393C13.97 10.29 13.89 10.23 13.8 10.18C13.68 10.12 13.55 10.15 13.44 10.18C13.28 10.24 11.95 11.16 9.4 12.61C8.89 12.88 8.42 13.02 8 13.02C7.54 13.02 6.63 12.8 5.95 12.61C5.25 12.41 4.68 12.3 4.73 11.94C4.75 11.79 5.01 11.63 5.5 11.45C8.11 10.44 10.25 9.65 11.93 9.08C14.49 8.2 15.25 7.95 15.54 7.95C15.63 7.95 15.83 7.98 15.96 8.09C16.07 8.18 16.1 8.3 16.11 8.38C16.12 8.46 16.14 8.63 16.13 8.79L16.64 8.8Z" fill="currentColor"/>
+                        </svg>
+                        تيليغرام
+                    </a>
+                    <a href="/Templates" class="nav-link">نماذج جاهزة</a>
+                    <a href="/Team" class="nav-link active">الفريق</a>
+                    <a href="/RequestProject" class="nav-link">طلب مشروع جديد</a>
+                    <a href="/Dashboard" class="nav-link user-only" style="display:none;">لوحة التحكم</a>
+                    <a href="/Profile" class="nav-link user-only" style="display:none;">الملف الشخصي</a>
+                    <a href="/Login" class="btn btn-secondary guest-only">دخول</a>
+                    <button class="btn btn-secondary user-only" style="display:none;" onclick="API.auth.logout()">خروج</button>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Team Section -->
+    <section class="team-section">
+        <div class="container">
+            <div class="team-header">
+                <h1 class="team-title">عنّا + الفريق</h1>
+                <p class="team-subtitle">deinkow — ستوديو وشبكة متعاونين</p>
+            </div>
+
+            <div class="team-intro">
+                <div class="team-intro-card">
+                    <h2>من نحن؟</h2>
+                    <p>deinkow هو ستوديو برمجي وشبكة من المطورين المستقلين. نخدمو مع شركاء حسب المشروع عشان نقدم ليك أفضل خدمة ممكنة.</p>
+                    <p>نخدمو بصراحة وشفافية - كل مشروع نعرفو مين اللي راح يشتغل عليه، ومين اللي راح يكون مسؤول على التواصل معاك.</p>
+                </div>
+            </div>
+
+            <!-- Team Members -->
+            <div class="team-grid">
+                <!-- Lead Developer -->
+                <div class="team-member-card lead-card">
+                    <div class="team-member-avatar">
+                        <div class="avatar-placeholder">
+                            <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="32" cy="32" r="32" fill="var(--primary-blue)" opacity="0.1"/>
+                                <circle cx="32" cy="24" r="10" fill="var(--primary-blue)"/>
+                                <path d="M16 52C16 44 24 40 32 40C40 40 48 44 48 52" fill="var(--primary-blue)"/>
+                            </svg>
+                        </div>
+                        <span class="lead-badge">Lead</span>
+                    </div>
+                    <div class="team-member-info">
+                        <h3 class="team-member-name">Mamou</h3>
+                        <p class="team-member-role">Lead Developer</p>
+                        <p class="team-member-bio">مطور برمجيات بخبرة واسعة في تطوير البوتات، المواقع، والتطبيقات. مسؤول على إدارة المشاريع والتواصل مع العملاء.</p>
+                        <div class="team-member-skills">
+                            <span class="skill-tag">Full Stack</span>
+                            <span class="skill-tag">Python</span>
+                            <span class="skill-tag">JavaScript</span>
+                            <span class="skill-tag">PHP</span>
+                            <span class="skill-tag">Node.js</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Partner 1 -->
+                <div class="team-member-card partner-card">
+                    <div class="team-member-avatar">
+                        <div class="avatar-placeholder">
+                            <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="32" cy="32" r="32" fill="var(--primary-purple)" opacity="0.1"/>
+                                <circle cx="32" cy="24" r="10" fill="var(--primary-purple)"/>
+                                <path d="M16 52C16 44 24 40 32 40C40 40 48 44 48 52" fill="var(--primary-purple)"/>
+                            </svg>
+                        </div>
+                        <span class="partner-badge">متعاون مستقل</span>
+                    </div>
+                    <div class="team-member-info">
+                        <h3 class="team-member-name">Amir wafi</h3>
+                        <p class="team-member-role">متعاون مستقل - Frontend</p>
+                        <p class="team-member-bio">متخصص في تطوير واجهات المستخدم الحديثة والتفاعلية. نخدمو معاه حسب المشروع.</p>
+                        <div class="team-member-skills">
+                            <span class="skill-tag">React</span>
+                            <span class="skill-tag">Vue.js</span>
+                            <span class="skill-tag">CSS</span>
+                            <span class="skill-tag">UI/UX</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Partner 2 -->
+                <div class="team-member-card partner-card">
+                    <div class="team-member-avatar">
+                        <div class="avatar-placeholder">
+                            <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="32" cy="32" r="32" fill="var(--primary-purple)" opacity="0.1"/>
+                                <circle cx="32" cy="24" r="10" fill="var(--primary-purple)"/>
+                                <path d="M16 52C16 44 24 40 32 40C40 40 48 44 48 52" fill="var(--primary-purple)"/>
+                            </svg>
+                        </div>
+                        <span class="partner-badge">متعاون مستقل</span>
+                    </div>
+                    <div class="team-member-info">
+                        <h3 class="team-member-name">Nazime selmie</h3>
+                        <p class="team-member-role">متعاون مستقل - DevOps</p>
+                        <p class="team-member-bio">خبير في النشر والبنية التحتية. نخدمو معاه في مشاريع تحتاج استضافة ونشر متقدم.</p>
+                        <div class="team-member-skills">
+                            <span class="skill-tag">Docker</span>
+                            <span class="skill-tag">AWS</span>
+                            <span class="skill-tag">Linux</span>
+                            <span class="skill-tag">CI/CD</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Badges Section -->
+            <div class="team-badges">
+                <div class="badge-item">
+                    <div class="badge-icon">✓</div>
+                    <div class="badge-content">
+                        <div class="badge-number">150+</div>
+                        <div class="badge-label">مشاريع مكتملة</div>
+                    </div>
+                </div>
+                <div class="badge-item">
+                    <div class="badge-icon">⚡</div>
+                    <div class="badge-content">
+                        <div class="badge-number">6</div>
+                        <div class="badge-label">ساعات - رد خلال</div>
+                    </div>
+                </div>
+                <div class="badge-item">
+                    <div class="badge-icon">🚀</div>
+                    <div class="badge-content">
+                        <div class="badge-number">1-14</div>
+                        <div class="badge-label">أيام - تسليم أولي</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA Section -->
+            <div class="team-cta">
+                <h2>حاب تبدأ مشروع معانا؟</h2>
+                <p>تواصل معانا وقل لنا على فكرتك</p>
+                <div class="team-cta-buttons">
+                    <a href="/RequestProject" class="btn btn-primary">اطلب مشروعك</a>
+                    <a href="https://t.me/Deinkow" target="_blank" class="btn btn-secondary">تيليغرام</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <style>
+        .team-section {
+            padding: 80px 0 100px;
+            background: var(--bg-main);
+        }
+
+        .team-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .team-title {
+            font-family: 'Cairo', 'Inter', sans-serif;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 900;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 16px;
+        }
+
+        .team-subtitle {
+            font-family: 'Cairo', 'Inter', sans-serif;
+            font-size: 20px;
+            color: var(--text-gray);
+        }
+
+        .team-intro {
+            margin-bottom: 60px;
+        }
+
+        .team-intro-card {
+            background: var(--bg-light);
+            border: 1px solid var(--border-light);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .team-intro-card h2 {
+            font-family: 'Cairo', 'Inter', sans-serif;
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 20px;
+        }
+
+        .team-intro-card p {
+            font-size: 16px;
+            color: var(--text-gray);
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
+            margin-bottom: 60px;
+        }
+
+        .team-member-card {
+            background: var(--bg-light);
+            border: 1px solid var(--border-light);
+            border-radius: 20px;
+            padding: 32px;
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s;
+        }
+
+        .team-member-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .lead-card {
+            border: 2px solid var(--primary-blue);
+        }
+
+        .team-member-avatar {
+            position: relative;
+            margin-bottom: 24px;
+        }
+
+        .avatar-placeholder {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto;
+        }
+
+        .lead-badge,
+        .partner-badge {
+            position: absolute;
+            top: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .lead-badge {
+            background: var(--primary-blue);
+            color: white;
+        }
+
+        .partner-badge {
+            background: var(--primary-purple);
+            color: white;
+        }
+
+        .team-member-info {
+            text-align: center;
+        }
+
+        .team-member-name {
+            font-family: 'Cairo', 'Inter', sans-serif;
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+        }
+
+        .team-member-role {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--primary-blue);
+            margin-bottom: 16px;
+        }
+
+        .team-member-bio {
+            font-size: 14px;
+            color: var(--text-gray);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .team-member-skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+        }
+
+        .skill-tag {
+            padding: 6px 12px;
+            background: var(--bg-main);
+            border: 1px solid var(--border-light);
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .team-badges {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 24px;
+            margin-bottom: 60px;
+        }
+
+        .badge-item {
+            background: var(--bg-light);
+            border: 1px solid var(--border-light);
+            border-radius: 16px;
+            padding: 24px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            box-shadow: var(--shadow-md);
+        }
+
+        .badge-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--primary-blue);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .badge-content {
+            flex: 1;
+        }
+
+        .badge-number {
+            font-family: 'Cairo', 'Inter', sans-serif;
+            font-size: 28px;
+            font-weight: 900;
+            color: var(--text-dark);
+            margin-bottom: 4px;
+        }
+
+        .badge-label {
+            font-size: 14px;
+            color: var(--text-gray);
+        }
+
+        .team-cta {
+            text-align: center;
+            background: var(--bg-light);
+            border: 1px solid var(--border-light);
+            border-radius: 20px;
+            padding: 60px 40px;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .team-cta h2 {
+            font-family: 'Cairo', 'Inter', sans-serif;
+            font-size: 32px;
+            font-weight: 900;
+            color: var(--text-dark);
+            margin-bottom: 12px;
+        }
+
+        .team-cta p {
+            font-size: 18px;
+            color: var(--text-gray);
+            margin-bottom: 32px;
+        }
+
+        .team-cta-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        @media (max-width: 768px) {
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+
+    <script>
+        // Check auth status
+        window.addEventListener('DOMContentLoaded', () => {
+            const token = localStorage.getItem('authToken');
+            const userOnly = document.querySelectorAll('.user-only');
+            const guestOnly = document.querySelectorAll('.guest-only');
+            
+            if (token) {
+                userOnly.forEach(el => el.style.display = '');
+                guestOnly.forEach(el => el.style.display = 'none');
+            } else {
+                userOnly.forEach(el => el.style.display = 'none');
+                guestOnly.forEach(el => el.style.display = '');
+            }
+        });
+    </script>
+</body>
+</html>
+

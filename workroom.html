@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>غرفة المشروع - deinkow</title>
+    <meta name="description" content="غرفة المشروع - إدارة وتتبع مشروعك">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="styles.css">
+    <script src="js/api.js"></script>
+    <script src="js/utils.js"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="/Home" class="logo">
+                    <img src="logo.png" alt="deinkow Logo" class="logo-image">
+                </a>
+                <nav class="nav">
+                    <a href="https://t.me/Deinkow" target="_blank" rel="noopener noreferrer" class="nav-link telegram-link" aria-label="Telegram Channel">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM16.64 8.8C16.49 10.38 15.84 14.22 15.51 15.99C15.37 16.74 15.09 16.99 14.83 17.02C14.25 17.07 13.81 16.64 13.25 16.27C12.37 15.69 11.87 15.33 11.02 14.77C10.03 14.12 10.67 13.76 11.24 13.18C11.39 13.03 13.95 10.7 14 10.49C14.0077 10.4582 14.0077 10.4246 14 10.393C13.97 10.29 13.89 10.23 13.8 10.18C13.68 10.12 13.55 10.15 13.44 10.18C13.28 10.24 11.95 11.16 9.4 12.61C8.89 12.88 8.42 13.02 8 13.02C7.54 13.02 6.63 12.8 5.95 12.61C5.25 12.41 4.68 12.3 4.73 11.94C4.75 11.79 5.01 11.63 5.5 11.45C8.11 10.44 10.25 9.65 11.93 9.08C14.49 8.2 15.25 7.95 15.54 7.95C15.63 7.95 15.83 7.98 15.96 8.09C16.07 8.18 16.1 8.3 16.11 8.38C16.12 8.46 16.14 8.63 16.13 8.79L16.64 8.8Z" fill="currentColor"/>
+                        </svg>
+                        تيليغرام
+                    </a>
+                    <a href="/Dashboard" class="nav-link">لوحة التحكم</a>
+                    <a href="/Profile" class="nav-link">الملف الشخصي</a>
+                    <button class="btn btn-secondary" onclick="API.auth.logout()">خروج</button>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Workroom Section -->
+    <section class="workroom-section">
+        <div class="container">
+            <!-- Workroom Header -->
+            <div class="workroom-header">
+                <div class="workroom-header-content">
+                    <h1 class="workroom-title">غرفة المشروع — طلب #<span id="ticketId">-</span></h1>
+                    <div class="workroom-meta">
+                        <span class="workroom-status" id="workroomStatus">-</span>
+                        <span class="workroom-assigned">Assigned to: deinkow — Lead: Mamou</span>
+                    </div>
+                </div>
+                <a href="https://t.me/Deinkow" target="_blank" class="btn btn-primary" id="telegramLink">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM16.64 8.8C16.49 10.38 15.84 14.22 15.51 15.99C15.37 16.74 15.09 16.99 14.83 17.02C14.25 17.07 13.81 16.64 13.25 16.27C12.37 15.69 11.87 15.33 11.02 14.77C10.03 14.12 10.67 13.76 11.24 13.18C11.39 13.03 13.95 10.7 14 10.49C14.0077 10.4582 14.0077 10.4246 14 10.393C13.97 10.29 13.89 10.23 13.8 10.18C13.68 10.12 13.55 10.15 13.44 10.18C13.28 10.24 11.95 11.16 9.4 12.61C8.89 12.88 8.42 13.02 8 13.02C7.54 13.02 6.63 12.8 5.95 12.61C5.25 12.41 4.68 12.3 4.73 11.94C4.75 11.79 5.01 11.63 5.5 11.45C8.11 10.44 10.25 9.65 11.93 9.08C14.49 8.2 15.25 7.95 15.54 7.95C15.63 7.95 15.83 7.98 15.96 8.09C16.07 8.18 16.1 8.3 16.11 8.38C16.12 8.46 16.14 8.63 16.13 8.79L16.64 8.8Z" fill="currentColor"/>
+                    </svg>
+                    فتح تيليغرام
+                </a>
+            </div>
+
+            <!-- Workroom Tabs -->
+            <div class="workroom-tabs">
+                <button class="workroom-tab active" data-tab="overview">نظرة عامة</button>
+                <button class="workroom-tab" data-tab="files">الملفات</button>
+                <button class="workroom-tab" data-tab="messages">الرسائل</button>
+                <button class="workroom-tab" data-tab="milestones">المراحل</button>
+                <button class="workroom-tab" data-tab="revisions">التعديلات</button>
+                <button class="workroom-tab" data-tab="delivery">التسليم</button>
+            </div>
+
+            <!-- Tab Contents -->
+            <div class="workroom-content">
+                <!-- Overview Tab -->
+                <div class="workroom-tab-content active" id="overviewTab">
+                    <div class="workroom-card">
+                        <h2 class="card-title">ملخص المشروع</h2>
+                        <div class="overview-grid">
+                            <div class="overview-item">
+                                <label>العنوان:</label>
+                                <div id="overviewSubject">-</div>
+                            </div>
+                            <div class="overview-item">
+                                <label>النوع:</label>
+                                <div id="overviewType">-</div>
+                            </div>
+                            <div class="overview-item">
+                                <label>الميزانية:</label>
+                                <div id="overviewBudget">-</div>
+                            </div>
+                            <div class="overview-item">
+                                <label>تاريخ الإنشاء:</label>
+                                <div id="overviewCreated">-</div>
+                            </div>
+                            <div class="overview-item full-width">
+                                <label>الوصف:</label>
+                                <div id="overviewDescription" class="overview-description">-</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="workroom-card">
+                        <h2 class="card-title">معلومات سريعة</h2>
+                        <div class="quick-info">
+                            <div class="quick-info-item">
+                                <span class="quick-info-label">الحالة:</span>
+                                <span class="quick-info-value" id="quickStatus">-</span>
+                            </div>
+                            <div class="quick-info-item">
+                                <span class="quick-info-label">التعديلات المتبقية:</span>
+                                <span class="quick-info-value" id="quickRevisions">2</span>
+                            </div>
+                            <div class="quick-info-item">
+                                <span class="quick-info-label">آخر تحديث:</span>
+                                <span class="quick-info-value" id="quickUpdated">-</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Files Tab -->
+                <div class="workroom-tab-content" id="filesTab">
+                    <div class="workroom-card">
+                        <div class="card-header-flex">
+                            <h2 class="card-title">الملفات</h2>
+                            <button class="btn btn-primary btn-sm" id="fileUploadBtn" onclick="document.getElementById('fileUploadInput').click()" style="display: none;">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M21 15V19C21 19.5304 20.7893 20.0391 20.4142 20.4142C20.0391 20.7893 19.5304 21 19 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V15M17 8L12 3M12 3L7 8M12 3V15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                رفع ملف
+                            </button>
+                            <input type="file" id="fileUploadInput" style="display: none;" multiple onchange="handleFileUpload(event)">
+                        </div>
+                        <div id="filesList" class="files-list">
+                            <div class="empty-state">
+                                <p>ما فيش ملفات مرفوعة</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Messages Tab -->
+                <div class="workroom-tab-content" id="messagesTab">
+                    <div class="workroom-card">
+                        <h2 class="card-title">الرسائل والملاحظات</h2>
+                        <div id="messagesList" class="messages-list">
+                            <div class="empty-state">
+                                <p>ما فيش رسائل</p>
+                            </div>
+                        </div>
+                        <div class="message-input-area">
+                            <textarea id="messageInput" class="form-input form-textarea" rows="3" placeholder="اكتب رسالة أو ملاحظة..."></textarea>
+                            <button class="btn btn-primary" onclick="sendMessage()" id="sendMessageBtn">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-left: 8px;">
+                                    <path d="M22 2L11 13M22 2L15 22L11 13M22 2L2 9L11 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                إرسال
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Milestones Tab -->
+                <div class="workroom-tab-content" id="milestonesTab">
+                    <div class="workroom-card">
+                        <h2 class="card-title">المراحل</h2>
+                        <div id="milestonesList" class="milestones-list">
+                            <div class="empty-state">
+                                <p>ما فيش مراحل محددة</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Revisions Tab -->
+                <div class="workroom-tab-content" id="revisionsTab">
+                    <div class="workroom-card">
+                        <h2 class="card-title">التعديلات</h2>
+                        <div class="revisions-info">
+                            <div class="revision-counter">
+                                <span class="revision-label">التعديلات المتبقية:</span>
+                                <span class="revision-count" id="revisionCount">2</span>
+                            </div>
+                            <p class="revision-note">لكل مشروع تعديلان مجانيان. بعد ذلك، قد تكون هناك رسوم إضافية.</p>
+                        </div>
+                        <div id="revisionsHistory" class="revisions-history">
+                            <div class="empty-state">
+                                <p>ما فيش طلبات تعديل</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Delivery Tab -->
+                <div class="workroom-tab-content" id="deliveryTab">
+                    <div class="workroom-card">
+                        <h2 class="card-title">التسليم</h2>
+                        <div id="deliveryContent" class="delivery-content">
+                            <div class="empty-state">
+                                <p>المشروع لم يتم تسليمه بعد</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <style>
+        .workroom-section {
+            padding: 40px 0 100px;
+            background: var(--bg-main);
+            min-height: calc(100vh - 80px);
+        }
+
+        .workroom-header {
+            background: var(--bg-light);
+            border: 1px solid var(--border-light);
+            border-radius: 20px;
+            padding: 32px;
+            margin-bottom: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            box-shadow: var(--shadow-md);
+        }
+
+        .workroom-header-content {
+            flex: 1;
+        }
+
+        .workroom-title {
+            font-family: 'Cairo', 'Inter', sans-serif;
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            font-weight: 900;
+            color: var(--text-dark);
+            margin-bottom: 12px;
+        }
+
+        .workroom-meta {
+            display: flex;
+            gap: 24px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .workroom-status {
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .workroom-assigned {
+            font-size: 14px;
+            color: var(--text-gray);
+        }
+
+        .workroom-tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 24px;
+            overflow-x: auto;
+            border-bottom: 2px solid var(--border-light);
+        }
+
+        .workroom-tab {
+            padding: 14px 24px;
+            background: transparent;
+            border: none;
+            border-bottom: 3px solid transparent;
+            color: var(--text-gray);
+            font-family: 'Cairo', 'Inter', sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            white-space: nowrap;
+            position: relative;
+            bottom: -2px;
+        }
+
+        .workroom-tab:hover {
+            color: var(--primary-blue);
+            background: rgba(37, 99, 235, 0.05);
+        }
+
+        .workroom-tab.active {
+            color: var(--primary-blue);
+            border-bottom-color: var(--primary-blue);
+            font-weight: 700;
+        }
+
+        .workroom-content {
+            min-height: 400px;
+        }
+
+        .workroom-tab-content {
+            display: none;
+        }
+
+        .workroom-tab-content.active {
+            display: block;
+        }
+
+        .workroom-card {
+            background: var(--bg-light);
+            border: 1px solid var(--border-light);
+            border-radius: 20px;
+            padding: 32px;
+            margin-bottom: 24px;
+            box-shadow: var(--shadow-md);
+        }
+
+        .card-header-flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        .overview-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 24px;
+        }
+
+        .overview-item {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .overview-item.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .overview-item label {
+            font-weight: 700;
+            color: var(--text-gray);
+            font-size: 14px;
+        }
+
+        .overview-item div {
+            color: var(--text-dark);
+            font-size: 16px;
+        }
+
+        .overview-description {
+            line-height: 1.6;
+            padding: 16px;
+            background: var(--bg-main);
+            border-radius: 12px;
+        }
+
+        .quick-info {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .quick-info-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px;
+            background: var(--bg-main);
+            border-radius: 12px;
+        }
+
+        .quick-info-label {
+            font-weight: 600;
+            color: var(--text-gray);
+        }
+
+        .quick-info-value {
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        .files-list,
+        .messages-list,
+        .milestones-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 24px;
+            min-height: 200px;
+        }
+
+        .file-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px;
+            background: var(--bg-main);
+            border-radius: 12px;
+            border: 1px solid var(--border-light);
+        }
+
+        .file-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .file-name {
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .file-size {
+            font-size: 12px;
+            color: var(--text-gray);
+        }
+
+        .message-item {
+            padding: 16px;
+            background: var(--bg-main);
+            border-radius: 12px;
+            border: 1px solid var(--border-light);
+            margin-bottom: 12px;
+        }
+
+        .message-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .message-author {
+            font-weight: 700;
+            color: var(--primary-blue);
+        }
+
+        .message-time {
+            font-size: 12px;
+            color: var(--text-gray);
+        }
+
+        .message-content {
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        .message-input-area {
+            margin-top: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 100px;
+            font-family: 'Cairo', 'Inter', sans-serif;
+        }
+
+        .messages-list {
+            max-height: 500px;
+            overflow-y: auto;
+            padding: 16px;
+            background: var(--bg-main);
+            border-radius: 12px;
+            margin-bottom: 24px;
+        }
+
+        .messages-list::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .messages-list::-webkit-scrollbar-track {
+            background: var(--bg-light);
+            border-radius: 3px;
+        }
+
+        .messages-list::-webkit-scrollbar-thumb {
+            background: var(--border-gray);
+            border-radius: 3px;
+        }
+
+        .messages-list::-webkit-scrollbar-thumb:hover {
+            background: var(--text-gray);
+        }
+
+        .milestone-item {
+            padding: 20px;
+            background: var(--bg-main);
+            border-radius: 12px;
+            border: 1px solid var(--border-light);
+            margin-bottom: 16px;
+        }
+
+        .milestone-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .milestone-title {
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        .milestone-checkbox {
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+        }
+
+        .milestone-description {
+            color: var(--text-gray);
+            line-height: 1.6;
+        }
+
+        .revisions-info {
+            margin-bottom: 24px;
+            padding: 20px;
+            background: var(--bg-main);
+            border-radius: 12px;
+        }
+
+        .revision-counter {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .revision-label {
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .revision-count {
+            font-size: 24px;
+            font-weight: 900;
+            color: var(--primary-blue);
+        }
+
+        .revision-note {
+            font-size: 14px;
+            color: var(--text-gray);
+            line-height: 1.6;
+        }
+
+        .delivery-content {
+            text-align: center;
+            padding: 40px;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 40px;
+            color: var(--text-gray);
+        }
+
+        @media (max-width: 768px) {
+            .workroom-header {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .workroom-tabs {
+                overflow-x: auto;
+            }
+
+            .overview-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+
+    <script>
+        let currentTicketId = null;
+        let currentTicket = null;
+        let currentUser = null;
+        let isAdmin = false;
+        let chatEventSource = null;
+
+        // Check authentication and load ticket
+        window.addEventListener('DOMContentLoaded', async () => {
+            const token = localStorage.getItem('authToken');
+            if (!token) {
+                Toast.warning('يرجى تسجيل الدخول');
+                setTimeout(() => window.location.href = '/Login', 1000);
+                return;
+            }
+
+            // Get current user info
+            try {
+                const userResponse = await API.auth.getCurrentUser();
+                if (userResponse && userResponse.success) {
+                    currentUser = userResponse.data.user;
+                    isAdmin = currentUser.role === 'admin';
+                }
+            } catch (error) {
+                Logger.error('Error getting user info:', error);
+            }
+
+            // Get ticket ID from URL
+            const urlParams = new URLSearchParams(window.location.search);
+            currentTicketId = urlParams.get('id');
+
+            if (!currentTicketId) {
+                Toast.error('معرف المشروع غير موجود');
+                setTimeout(() => window.location.href = '/Dashboard', 2000);
+                return;
+            }
+
+            await loadTicket();
+            setupTabs();
+            
+            // Setup file upload button visibility
+            setupFileUpload();
+        });
+
+        // Load ticket data
+        async function loadTicket() {
+            try {
+                const response = await API.support.getTicket(currentTicketId);
+                if (response && response.success) {
+                    currentTicket = response.data.ticket;
+                    renderTicket();
+                    if (response.data.replies) {
+                        renderReplies(response.data.replies);
+                    } else {
+                        loadReplies();
+                    }
+                } else {
+                    throw new Error('Failed to load ticket');
+                }
+            } catch (error) {
+                Logger.error('Error loading ticket:', error);
+                Toast.error('فشل تحميل بيانات المشروع');
+            }
+        }
+
+        // Render ticket data
+        function renderTicket() {
+            if (!currentTicket) return;
+
+            document.getElementById('ticketId').textContent = currentTicket.id;
+            
+            const statusText = {
+                'open': 'مفتوح',
+                'agreed': 'متفق عليه',
+                'in_progress': 'قيد التنفيذ',
+                'delivery': 'تسليم',
+                'resolved': 'مكتمل',
+                'closed': 'مغلق'
+            }[currentTicket.status] || currentTicket.status;
+
+            const statusClass = {
+                'open': 'status-open',
+                'agreed': 'status-agreed',
+                'in_progress': 'status-progress',
+                'delivery': 'status-delivery',
+                'resolved': 'status-resolved',
+                'closed': 'status-closed'
+            }[currentTicket.status] || 'status-open';
+
+            document.getElementById('workroomStatus').textContent = statusText;
+            document.getElementById('workroomStatus').className = 'workroom-status ' + statusClass;
+            document.getElementById('quickStatus').textContent = statusText;
+
+            document.getElementById('overviewSubject').textContent = currentTicket.subject;
+            document.getElementById('overviewDescription').textContent = currentTicket.message;
+
+            // Parse message for metadata
+            try {
+                const metaMatch = currentTicket.message.match(/\{.*\}/);
+                if (metaMatch) {
+                    const meta = JSON.parse(metaMatch[0]);
+                    document.getElementById('overviewType').textContent = meta.type || '-';
+                    document.getElementById('overviewBudget').textContent = meta.budget || '-';
+                }
+            } catch (e) {
+                Logger.error('Error parsing metadata:', e);
+            }
+
+            const createdDate = new Date(currentTicket.created_at);
+            document.getElementById('overviewCreated').textContent = createdDate.toLocaleDateString('ar-DZ');
+            document.getElementById('quickUpdated').textContent = new Date(currentTicket.updated_at).toLocaleDateString('ar-DZ');
+        }
+
+        // Setup tabs
+        function setupTabs() {
+            const tabs = document.querySelectorAll('.workroom-tab');
+            const contents = document.querySelectorAll('.workroom-tab-content');
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const targetTab = tab.dataset.tab;
+
+                    tabs.forEach(t => t.classList.remove('active'));
+                    contents.forEach(c => c.classList.remove('active'));
+
+                    tab.classList.add('active');
+                    document.getElementById(targetTab + 'Tab').classList.add('active');
+
+                    // Load tab-specific data
+                    if (targetTab === 'messages') {
+                        loadReplies();
+                    } else if (targetTab === 'milestones') {
+                        loadMilestones();
+                    } else if (targetTab === 'files') {
+                        loadFiles();
+                    }
+                });
+            });
+        }
+
+        // Load replies
+        async function loadReplies() {
+            try {
+                const response = await API.support.getTicket(currentTicketId);
+                if (response && response.success && response.data.replies) {
+                    renderReplies(response.data.replies);
+                } else {
+                    const messagesList = document.getElementById('messagesList');
+                    messagesList.innerHTML = '<div class="empty-state"><p>ما فيش رسائل</p></div>';
+                }
+            } catch (error) {
+                Logger.error('Error loading replies:', error);
+                const messagesList = document.getElementById('messagesList');
+                messagesList.innerHTML = '<div class="empty-state"><p>خطأ في تحميل الرسائل</p></div>';
+            }
+        }
+
+        // Render replies
+        function renderReplies(replies) {
+            const messagesList = document.getElementById('messagesList');
+            
+            if (!replies || replies.length === 0) {
+                messagesList.innerHTML = '<div class="empty-state"><p>ما فيش رسائل</p></div>';
+                return;
+            }
+
+            messagesList.innerHTML = '';
+            replies.forEach(reply => {
+                const messageDiv = document.createElement('div');
+                messageDiv.className = 'message-item';
+                
+                const isAdminReply = reply.is_admin === 1 || reply.is_admin === true;
+                const authorName = isAdminReply ? 'Admin' : (reply.username || 'مستخدم');
+                const messageDate = new Date(reply.created_at).toLocaleString('ar-DZ');
+                
+                messageDiv.innerHTML = `
+                    <div class="message-header">
+                        <span class="message-author" style="color: ${isAdminReply ? 'var(--primary-blue)' : 'var(--text-dark)'};">${InputSanitizer.sanitize(authorName)}</span>
+                        <span class="message-time">${messageDate}</span>
+                    </div>
+                    <div class="message-content">${InputSanitizer.sanitize(reply.message)}</div>
+                `;
+                messagesList.appendChild(messageDiv);
+            });
+            
+            // Scroll to bottom
+            messagesList.scrollTop = messagesList.scrollHeight;
+        }
+
+        // Send message
+        async function sendMessage() {
+            const messageInput = document.getElementById('messageInput');
+            const message = messageInput.value.trim();
+
+            if (!message) {
+                Toast.warning('اكتب رسالة');
+                return;
+            }
+
+            if (!currentTicketId) {
+                Toast.error('معرف المشروع غير موجود');
+                return;
+            }
+
+            try {
+                const response = await API.support.replyToTicket(currentTicketId, message);
+                if (response && response.success) {
+                    Toast.success('تم إرسال الرسالة');
+                    messageInput.value = '';
+                    // Reload replies to show new message
+                    await loadReplies();
+                } else {
+                    throw new Error(response?.message || 'Failed to send message');
+                }
+            } catch (error) {
+                Logger.error('Error sending message:', error);
+                Toast.error(error.message || 'فشل إرسال الرسالة');
+            }
+        }
+
+        // Setup Enter key to send message
+        document.addEventListener('DOMContentLoaded', () => {
+            const messageInput = document.getElementById('messageInput');
+            if (messageInput) {
+                messageInput.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' && !e.shiftKey) {
+                        e.preventDefault();
+                        sendMessage();
+                    }
+                });
+            }
+        });
+
+        // Load milestones
+        function loadMilestones() {
+            // TODO: Load from activity_logs or ticket metadata
+            const milestonesList = document.getElementById('milestonesList');
+            milestonesList.innerHTML = '<div class="empty-state"><p>ما فيش مراحل محددة</p></div>';
+        }
+
+        // Setup file upload button visibility
+        function setupFileUpload() {
+            const uploadButton = document.getElementById('fileUploadBtn');
+            
+            if (isAdmin && uploadButton) {
+                uploadButton.style.display = 'inline-flex';
+            } else if (uploadButton) {
+                uploadButton.style.display = 'none';
+            }
+        }
+
+        // Load files
+        async function loadFiles() {
+            try {
+                const filesList = document.getElementById('filesList');
+                filesList.innerHTML = '<div class="empty-state"><p>جاري التحميل...</p></div>';
+
+                const response = await API.files.getFiles(currentTicketId);
+                if (response && response.success && response.data && response.data.length > 0) {
+                    renderFiles(response.data);
+                } else {
+                    filesList.innerHTML = '<div class="empty-state"><p>ما فيش ملفات مرفوعة</p></div>';
+                }
+            } catch (error) {
+                Logger.error('Error loading files:', error);
+                const filesList = document.getElementById('filesList');
+                filesList.innerHTML = '<div class="empty-state"><p>خطأ في تحميل الملفات</p></div>';
+            }
+        }
+
+        // Render files
+        function renderFiles(files) {
+            const filesList = document.getElementById('filesList');
+            filesList.innerHTML = '';
+
+            files.forEach(file => {
+                const fileDiv = document.createElement('div');
+                fileDiv.className = 'file-item';
+                
+                const fileSize = file.file_size ? formatFileSize(file.file_size) : 'غير معروف';
+                const uploadDate = new Date(file.created_at).toLocaleDateString('ar-DZ');
+                
+                fileDiv.innerHTML = `
+                    <div class="file-info">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" style="color: var(--primary-blue);">
+                            <path d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M14 2V8H20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <div>
+                            <div class="file-name">${InputSanitizer.sanitize(file.file_name)}</div>
+                            <div class="file-size">${fileSize} • ${uploadDate}</div>
+                        </div>
+                    </div>
+                    <div style="display: flex; gap: 8px;">
+                        <button onclick="downloadProjectFile(${Number(file.id)})" class="btn btn-secondary btn-sm">تحميل</button>
+                        ${isAdmin ? `<button class="btn btn-danger btn-sm" onclick="deleteFile(${file.id})">حذف</button>` : ''}
+                    </div>
+                `;
+                filesList.appendChild(fileDiv);
+            });
+        }
+
+        // Format file size
+        function formatFileSize(bytes) {
+            if (!bytes) return '0 B';
+            const k = 1024;
+            const sizes = ['B', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return Math.round(bytes / Math.pow(k, i) * 100) / 100 + ' ' + sizes[i];
+        }
+
+        // Handle file upload
+        async function handleFileUpload(event) {
+            if (!isAdmin) {
+                Toast.error('فقط المدير يمكنه رفع الملفات');
+                return;
+            }
+
+            const files = event.target.files;
+            if (!files || files.length === 0) return;
+
+            for (let file of files) {
+                try {
+                    Toast.info(`جاري رفع ${file.name}...`);
+                    const response = await API.files.uploadFile(currentTicketId, file);
+                    if (response && response.success) {
+                        Toast.success(`تم رفع ${file.name} بنجاح`);
+                    } else {
+                        Toast.error(`فشل رفع ${file.name}: ${response?.message || 'خطأ غير معروف'}`);
+                    }
+                } catch (error) {
+                    Logger.error('Error uploading file:', error);
+                    Toast.error(`فشل رفع ${file.name}`);
+                }
+            }
+
+            // Reload files list
+            await loadFiles();
+            
+            // Reset input
+            event.target.value = '';
+        }
+
+        // Delete file
+        async function deleteFile(fileId) {
+            if (!isAdmin) {
+                Toast.error('فقط المدير يمكنه حذف الملفات');
+                return;
+            }
+
+            if (!confirm('هل أنت متأكد من حذف هذا الملف؟')) {
+                return;
+            }
+
+            try {
+                const response = await API.files.deleteFile(fileId);
+                if (response && response.success) {
+                    Toast.success('تم حذف الملف');
+                    await loadFiles();
+                } else {
+                    Toast.error(response?.message || 'فشل حذف الملف');
+                }
+            } catch (error) {
+                Logger.error('Error deleting file:', error);
+                Toast.error('فشل حذف الملف');
+            }
+        }
+    </script>
+<script>
+async function downloadProjectFile(id) {
+  try {
+    const response = await fetch('/api/files/download.php?id=' + id, {headers: {'Authorization': 'Bearer ' + localStorage.getItem('authToken')}});
+    if (!response.ok) throw new Error('Access denied');
+    const url = URL.createObjectURL(await response.blob());
+    const link = document.createElement('a'); link.href = url; link.download = 'project-file-' + id; link.click();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+  } catch (error) { alert('تعذر تحميل الملف'); }
+}
+</script></body>
+</html>
+
+

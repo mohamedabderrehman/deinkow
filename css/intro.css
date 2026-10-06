@@ -1,0 +1,76 @@
+/* Cinematic Intro Screen */
+.intro-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000000;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.8s ease-out, visibility 0.8s ease-out;
+  pointer-events: none;
+}
+
+.intro-overlay.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.intro-content {
+  text-align: center;
+  color: #FFFFFF;
+  font-family: var(--font-family-primary, 'Cairo', sans-serif);
+}
+
+.intro-text {
+  font-size: clamp(24px, 5vw, 48px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  margin: 0;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: introFadeIn 1.2s ease-out forwards;
+}
+
+.intro-text.typing {
+  animation: none;
+}
+
+.intro-text.typing::after {
+  content: '|';
+  display: inline-block;
+  margin-left: 4px;
+  animation: blinkCursor 1s infinite;
+  opacity: 1;
+}
+
+@keyframes introFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes blinkCursor {
+  0%, 50% {
+    opacity: 1;
+  }
+  51%, 100% {
+    opacity: 0;
+  }
+}
+
+/* Prevent body scroll during intro */
+body.intro-active {
+  overflow: hidden;
+}

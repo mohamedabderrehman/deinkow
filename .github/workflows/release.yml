@@ -1,0 +1,36 @@
+name: Release checks
+on: [push, pull_request, workflow_dispatch]
+permissions:
+  contents: read
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    env:
+      DB_HOST: 127.0.0.1
+      DB_USER: root
+      DB_PASS: synthetic-ci-only
+      DB_NAME: demo
+      DB_PORT: '3306'
+      DEMO_PASSWORD: Synthetic-Demo-2026
+      JWT_SECRET: synthetic-ci-signing-value-for-disposable-tests
+      DEMO_MODE: '1'
+    services:
+      mariadb:
+        image: mariadb:11.4
+        env:
+          MARIADB_ROOT_PASSWORD: synthetic-ci-only
+          MARIADB_DATABASE: demo
+        ports: ['3306:3306']
+        options: --health-cmd "healthcheck.sh --connect --innodb_initialized" --health-interval 5s --health-retries 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.4'
+          extensions: mysqli, pdo_sqlite, sqlite3, curl, fileinfo, mbstring, redis
+      - run: find . -name '*.php' -not -path './vendor/*' -print0 | xargs -0 -n1 php -l
+      - run: php tools/bootstrap.php
+      - run: |
+          php -S 127.0.0.1:8086 router.php > /tmp/deinkow.log 2>&1 &
+          sleep 2
+          python tools/check-demo.py

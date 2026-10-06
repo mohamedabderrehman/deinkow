@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>طلب مشروع جديد - Deinkow</title>
+    <meta name="description" content="اطلب مشروعك البرمجي من Deinkow - بوتات، مواقع، تطبيقات، سكريبتات">
+    <link rel="icon" type="image/png" href="favicon.ico">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="styles.css">
+    <script src="js/api.js"></script>
+    <script src="js/utils.js"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="/Home" class="logo">
+                    <img src="logo.png" alt="Deinkow Logo" class="logo-image">
+                </a>
+                <nav class="nav" id="mainNav">
+                    <a href="https://t.me/Deinkow" target="_blank" rel="noopener noreferrer" class="nav-link telegram-link" aria-label="Telegram Channel">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM16.64 8.8C16.49 10.38 15.84 14.22 15.51 15.99C15.37 16.74 15.09 16.99 14.83 17.02C14.25 17.07 13.81 16.64 13.25 16.27C12.37 15.69 11.87 15.33 11.02 14.77C10.03 14.12 10.67 13.76 11.24 13.18C11.39 13.03 13.95 10.7 14 10.49C14.0077 10.4582 14.0077 10.4246 14 10.393C13.97 10.29 13.89 10.23 13.8 10.18C13.68 10.12 13.55 10.15 13.44 10.18C13.28 10.24 11.95 11.16 9.4 12.61C8.89 12.88 8.42 13.02 8 13.02C7.54 13.02 6.63 12.8 5.95 12.61C5.25 12.41 4.68 12.3 4.73 11.94C4.75 11.79 5.01 11.63 5.5 11.45C8.11 10.44 10.25 9.65 11.93 9.08C14.49 8.2 15.25 7.95 15.54 7.95C15.63 7.95 15.83 7.98 15.96 8.09C16.07 8.18 16.1 8.3 16.11 8.38C16.12 8.46 16.14 8.63 16.13 8.79L16.64 8.8Z" fill="currentColor"/>
+                        </svg>
+                        Telegram
+                    </a>
+                    <!-- Guest buttons -->
+                    <a href="/Login" class="btn btn-secondary guest-only">دخول</a>
+                    <a href="/Register" class="btn btn-primary guest-only">اطلب مشروعك الآن</a>
+                    <!-- User buttons -->
+                    <a href="/Dashboard" class="nav-link user-only" style="display:none;">لوحة التحكم</a>
+                    <a href="/Support" class="nav-link user-only" style="display:none;">الدعم الفني</a>
+                    <a href="/Profile" class="nav-link user-only" style="display:none;">الملف الشخصي</a>
+                    <button class="btn btn-outline user-only" style="display:none;" onclick="API.auth.logout()">خروج</button>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Project Request Section -->
+    <section class="support-section">
+        <div class="container">
+            <div class="support-header">
+                <h1 class="support-title">طلب مشروع جديد</h1>
+                <p class="support-subtitle">املأ النموذج التالي ووصف مشروعك البرمجي. فريق Deinkow سيتواصل معك قريباً.</p>
+            </div>
+
+            <div class="support-content">
+                <!-- Project Request Form -->
+                <div class="support-ticket-section">
+                    <div class="support-ticket-card">
+                        <div class="support-ticket-header">
+                            <h2 class="support-ticket-title">معلومات المشروع</h2>
+                            <p class="support-ticket-subtitle">كل المعلومات اللي نحتاجها عشان نبدأ مشروعك</p>
+                        </div>
+
+                        <form class="support-ticket-form" id="projectForm">
+                            <div class="form-group">
+                                <label for="projectType" class="form-label">نوع المشروع *</label>
+                                <select id="projectType" name="projectType" class="form-input" required>
+                                    <option value="">اختر نوع المشروع</option>
+                                    <option value="bot">بوت (Telegram, Discord, WhatsApp...)</option>
+                                    <option value="website">موقع ويب</option>
+                                    <option value="app">تطبيق (Android, iOS, Desktop)</option>
+                                    <option value="script">سكريبت</option>
+                                    <option value="system">نظام مخصص</option>
+                                    <option value="other">أخرى</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="projectSubject" class="form-label">عنوان المشروع *</label>
+                                <input 
+                                    type="text" 
+                                    id="projectSubject" 
+                                    name="subject" 
+                                    class="form-input" 
+                                    placeholder="مثال: بوت Telegram لإدارة المجموعات"
+                                    required
+                                    maxlength="255"
+                                >
+                            </div>
+
+                            <div class="form-group">
+                                <label for="projectDescription" class="form-label">وصف مفصل للمشروع *</label>
+                                <textarea 
+                                    id="projectDescription" 
+                                    name="message" 
+                                    class="form-input form-textarea" 
+                                    rows="8"
+                                    placeholder="وصف المشروع بالتفصيل: الميزات المطلوبة، الوظائف، التصميم، أي متطلبات خاصة..."
+                                    required
+                                    maxlength="5000"
+                                ></textarea>
+                                <div class="form-hint">
+                                    <span id="charCount">0</span> / 5000 حرف
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="projectBudget" class="form-label">الميزانية التقريبية *</label>
+                                <input 
+                                    type="text" 
+                                    id="projectBudget" 
+                                    name="budget" 
+                                    class="form-input" 
+                                    placeholder="مثال: 500$ - 1000$ أو 50000 دج - 100000 دج"
+                                    required
+                                >
+                                <div class="form-hint" style="margin-top: 4px;">
+                                    اذكر الميزانية التقريبية للمشروع (بالدولار أو الدينار الجزائري)
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="projectTelegram" class="form-label">حساب Telegram *</label>
+                                <input 
+                                    type="text" 
+                                    id="projectTelegram" 
+                                    name="telegram" 
+                                    class="form-input" 
+                                    placeholder="مثال: @username أو https://t.me/username"
+                                    required
+                                >
+                                <div class="form-hint" style="margin-top: 4px;">
+                                    سنتواصل معك على Telegram لمناقشة تفاصيل المشروع
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="projectPriority" class="form-label">الأولوية</label>
+                                <select id="projectPriority" name="priority" class="form-input">
+                                    <option value="low">منخفضة - غير مستعجل</option>
+                                    <option value="medium" selected>متوسطة - عادي</option>
+                                    <option value="high">عالية - مستعجل</option>
+                                    <option value="urgent">عاجلة - جداً مستعجل</option>
+                                </select>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary btn-block btn-large" id="submitProjectBtn">
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-left: 8px;">
+                                    <path d="M10 3V17M3 10H17" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                </svg>
+                                إرسال الطلب
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- My Projects Section (for logged-in users) -->
+                    <div class="support-tickets-list" id="myProjectsSection" style="display: none; margin-top: 48px;">
+                        <div class="support-ticket-card">
+                            <div class="support-ticket-header" style="display: flex; justify-content: space-between; align-items: center;">
+                                <div>
+                                    <h2 class="support-ticket-title">طلباتي السابقة</h2>
+                                    <p class="support-ticket-subtitle">جميع المشاريع التي طلبتها</p>
+                                </div>
+                                <button class="btn btn-secondary btn-small" onclick="loadMyProjects()">تحديث</button>
+                            </div>
+                            <div id="projectsList" class="tickets-list">
+                                <div class="empty-state">
+                                    <svg class="empty-state-icon" width="64" height="64" viewBox="0 0 64 64" fill="none">
+                                        <circle cx="32" cy="32" r="24" stroke="currentColor" stroke-width="2" fill="none" opacity="0.3"/>
+                                        <path d="M32 20V32L40 40" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity="0.3"/>
+                                    </svg>
+                                    <h3 class="empty-state-title">ما عندكش طلبات</h3>
+                                    <p class="empty-state-description">لم تقدم أي طلبات مشاريع بعد.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <style>
+        .support-section {
+            padding: 100px 0;
+            background: var(--bg-main);
+            min-height: calc(100vh - 200px);
+        }
+
+        .support-header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .support-title {
+            font-family: 'Cairo', 'Inter', sans-serif;
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 900;
+            color: var(--text-dark);
+            margin-bottom: 16px;
+            letter-spacing: -0.03em;
+            line-height: 1.2;
+            background: var(--primary-gradient);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .support-subtitle {
+            font-family: 'Cairo', 'Inter', sans-serif;
+            font-size: clamp(1rem, 2vw, 1.125rem);
+            font-weight: 400;
+            color: var(--text-gray);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.75;
+        }
+
+        .support-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .support-ticket-section {
+            margin-top: 48px;
+        }
+
+        .support-ticket-card {
+            background: var(--bg-light);
+            border: 1px solid var(--border-light);
+            border-radius: 16px;
+            padding: 32px;
+            box-shadow: var(--shadow-md);
+        }
+
+        .support-ticket-header {
+            margin-bottom: 32px;
+        }
+
+        .support-ticket-title {
+            font-family: 'Cairo', 'Inter', sans-serif;
+            font-size: clamp(1.5rem, 4vw, 1.75rem);
+            font-weight: 900;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+            letter-spacing: -0.02em;
+            line-height: 1.3;
+        }
+
+        .support-ticket-subtitle {
+            font-family: 'Cairo', 'Inter', sans-serif;
+            font-size: 14px;
+            font-weight: 400;
+            color: var(--text-gray);
+            line-height: 1.6;
+        }
+
+        .support-ticket-form .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        .form-hint {
+            font-size: 12px;
+            color: var(--text-gray);
+            margin-top: 8px;
+            text-align: right;
+        }
+
+        .tickets-list {
+            margin-top: 24px;
+        }
+
+        .ticket-item {
+            background: var(--bg-main);
+            border: 1px solid var(--border-light);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 16px;
+            transition: all 0.3s;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .ticket-item:hover {
+            border-color: var(--primary-blue);
+            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
+        }
+
+        .ticket-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
+        }
+
+        .ticket-subject {
+            font-family: 'Cairo', 'Inter', sans-serif;
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+            letter-spacing: -0.01em;
+            line-height: 1.3;
+        }
+
+        .ticket-status {
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .ticket-status.open {
+            background: rgba(59, 130, 246, 0.2);
+            color: #3b82f6;
+        }
+
+        .ticket-status.in_progress {
+            background: rgba(251, 191, 36, 0.2);
+            color: #FBBF24;
+        }
+
+        .ticket-status.resolved {
+            background: rgba(16, 185, 129, 0.2);
+            color: #10b981;
+        }
+
+        .ticket-status.closed {
+            background: rgba(107, 114, 128, 0.2);
+            color: #6b7280;
+        }
+
+        .ticket-meta {
+            display: flex;
+            gap: 16px;
+            font-family: 'Cairo', 'Inter', sans-serif;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-gray);
+            margin-bottom: 12px;
+            line-height: 1.6;
+        }
+
+        .ticket-message-preview {
+            font-family: 'Cairo', 'Inter', sans-serif;
+            font-size: 14px;
+            font-weight: 400;
+            color: var(--text-gray);
+            line-height: 1.75;
+            margin-bottom: 12px;
+        }
+
+        .ticket-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .btn-small {
+            padding: 8px 16px;
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .support-title {
+                font-size: 36px;
+            }
+
+            .ticket-header {
+                flex-direction: column;
+                gap: 12px;
+            }
+        }
+    </style>
+
+    <script>
+        // Character count for description textarea
+        document.getElementById('projectDescription').addEventListener('input', function() {
+            const count = this.value.length;
+            document.getElementById('charCount').textContent = count;
+            
+            if (count > 5000) {
+                this.value = this.value.substring(0, 5000);
+                document.getElementById('charCount').textContent = 5000;
+            }
+        });
+
+        // Project form submission
+        document.getElementById('projectForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            // Check if API is loaded
+            if (typeof API === 'undefined' || !API.support || !API.getAuthToken) {
+                Toast.error('API غير محمل. يرجى تحديث الصفحة والمحاولة مرة أخرى.');
+                return;
+            }
+            
+            const token = API.getAuthToken();
+            if (!token) {
+                Toast.warning('يرجى تسجيل الدخول لطلب مشروع جديد');
+                setTimeout(() => {
+                    window.location.href = '/Login';
+                }, 1500);
+                return;
+            }
+
+            const projectType = document.getElementById('projectType').value;
+            const subject = InputSanitizer.sanitize(document.getElementById('projectSubject').value.trim());
+            const description = InputSanitizer.sanitize(document.getElementById('projectDescription').value.trim());
+            const budget = InputSanitizer.sanitize(document.getElementById('projectBudget').value.trim());
+            const telegram = InputSanitizer.sanitize(document.getElementById('projectTelegram').value.trim());
+            const priority = document.getElementById('projectPriority').value;
+
+            if (!projectType || !subject || !description || !budget || !telegram) {
+                Toast.error('يرجى ملء جميع الحقول المطلوبة');
+                return;
+            }
+
+            // Build full message with all project details
+            const fullMessage = `نوع المشروع: ${projectType}\n\nالوصف:\n${description}\n\nالميزانية: ${budget}\n\nTelegram: ${telegram}`;
+
+            const submitBtn = document.getElementById('submitProjectBtn');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<svg width="20" height="20" viewBox="0 0 20 20" fill="none" style="margin-left: 8px;"><circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="2" fill="none" opacity="0.3"/><path d="M10 2V10L14 14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg> جاري الإرسال...';
+
+            try {
+                const response = await API.support.createTicket(subject, fullMessage, priority);
+                
+                if (response.success) {
+                    Toast.success('تم إرسال طلب المشروع بنجاح! فريق Deinkow سيتواصل معك قريباً على Telegram.');
+                    document.getElementById('projectForm').reset();
+                    document.getElementById('charCount').textContent = '0';
+                    
+                    // Load projects if user is logged in
+                    if (token) {
+                        await loadMyProjects();
+                    }
+                    
+                    // Scroll to projects list
+                    setTimeout(() => {
+                        document.getElementById('myProjectsSection')?.scrollIntoView({ behavior: 'smooth' });
+                    }, 500);
+                } else {
+                    Toast.error(response.message || 'فشل إرسال الطلب. يرجى المحاولة مرة أخرى.');
+                }
+            } catch (error) {
+                console.error('Create Project Error:', error);
+                Toast.error('فشل إرسال الطلب. يرجى المحاولة مرة أخرى.');
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalText;
+            }
+        });
+
+        // Load my projects (tickets)
+        async function loadMyProjects() {
+            // Check if API is loaded
+            if (typeof API === 'undefined' || !API.getAuthToken || !API.support) {
+                document.getElementById('myProjectsSection').style.display = 'none';
+                return;
+            }
+            
+            const token = API.getAuthToken();
+            if (!token) {
+                document.getElementById('myProjectsSection').style.display = 'none';
+                return;
+            }
+
+            document.getElementById('myProjectsSection').style.display = 'block';
+            const projectsList = document.getElementById('projectsList');
+            
+            try {
+                const response = await API.support.getMyTickets();
+                
+                if (response.success && response.data.tickets && response.data.tickets.length > 0) {
+                    projectsList.innerHTML = '';
+                    response.data.tickets.forEach(ticket => {
+                        const ticketItem = createProjectItem(ticket);
+                        projectsList.appendChild(ticketItem);
+                    });
+                } else {
+                    projectsList.innerHTML = `
+                        <div class="empty-state">
+                            <svg class="empty-state-icon" width="64" height="64" viewBox="0 0 64 64" fill="none">
+                                <circle cx="32" cy="32" r="24" stroke="currentColor" stroke-width="2" fill="none" opacity="0.3"/>
+                                <path d="M32 20V32L40 40" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity="0.3"/>
+                            </svg>
+                            <h3 class="empty-state-title">ما عندكش طلبات</h3>
+                            <p class="empty-state-description">لم تقدم أي طلبات مشاريع بعد.</p>
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                console.error('Load Projects Error:', error);
+                Toast.error('فشل تحميل الطلبات. يرجى المحاولة مرة أخرى.');
+                projectsList.innerHTML = `
+                    <div class="empty-state">
+                        <h3 class="empty-state-title">خطأ في التحميل</h3>
+                        <p class="empty-state-description">يرجى المحاولة مرة أخرى لاحقاً.</p>
+                    </div>
+                `;
+            }
+        }
+
+        function createProjectItem(ticket) {
+            const item = document.createElement('div');
+            item.className = 'ticket-item';
+            
+            const statusClass = ticket.status.replace('_', '-');
+            const createdDate = new Date(ticket.created_at).toLocaleDateString('ar-DZ');
+            const messagePreview = ticket.message.length > 200 
+                ? ticket.message.substring(0, 200) + '...' 
+                : ticket.message;
+            
+            const statusText = {
+                'open': 'مفتوح',
+                'in_progress': 'جاري التنفيذ',
+                'resolved': 'مكتمل',
+                'closed': 'مغلق'
+            }[ticket.status] || ticket.status;
+
+            item.innerHTML = `
+                <div class="ticket-header">
+                    <div style="flex: 1;">
+                        <div class="ticket-subject">${InputSanitizer.sanitize(ticket.subject)}</div>
+                        <div class="ticket-meta">
+                            <span>الأولوية: ${ticket.priority}</span>
+                            <span>التاريخ: ${createdDate}</span>
+                        </div>
+                    </div>
+                    <span class="ticket-status ${statusClass}">${statusText}</span>
+                </div>
+                <div class="ticket-message-preview">${InputSanitizer.sanitize(messagePreview)}</div>
+                <div class="ticket-actions">
+                    <button onclick="showTicketDetails(${ticket.id})" class="btn btn-secondary btn-small">عرض التفاصيل</button>
+                </div>
+            `;
+            
+            return item;
+        }
+
+        // Show ticket details modal
+        async function showTicketDetails(ticketId) {
+            if (typeof API === 'undefined' || !API.support) {
+                Toast.error('API غير محمل. يرجى تحديث الصفحة.');
+                return;
+            }
+
+            try {
+                const response = await API.support.getTicket(ticketId);
+                if (response.success && response.data.ticket) {
+                    const ticket = response.data.ticket;
+                    const replies = response.data.replies || [];
+                    
+                    // Create modal
+                    const modal = document.createElement('div');
+                    modal.className = 'ticket-detail-modal';
+                    modal.style.cssText = 'position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 10000; display: flex; align-items: center; justify-content: center; padding: 20px;';
+                    
+                    const statusText = {
+                        'open': 'مفتوح',
+                        'in_progress': 'قيد التنفيذ',
+                        'resolved': 'مكتمل',
+                        'closed': 'مغلق'
+                    }[ticket.status] || ticket.status;
+                    
+                    const statusClass = ticket.status.replace('_', '-');
+                    
+                    modal.innerHTML = `
+                        <div class="ticket-detail-content" style="background: var(--bg-light); border-radius: 16px; padding: 32px; max-width: 800px; max-height: 90vh; overflow-y: auto; width: 100%; position: relative;">
+                            <button class="ticket-detail-close" onclick="this.closest('.ticket-detail-modal').remove()" style="position: absolute; top: 16px; left: 16px; background: none; border: none; font-size: 24px; cursor: pointer; color: var(--text-gray); padding: 8px; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 8px; transition: all 0.2s;">
+                                ×
+                            </button>
+                            <h2 style="font-family: 'Cairo', 'Inter', sans-serif; font-size: 24px; font-weight: 800; color: var(--text-dark); margin-bottom: 8px; padding-right: 40px;">${InputSanitizer.sanitize(ticket.subject)}</h2>
+                            <div style="display: flex; gap: 12px; margin-bottom: 24px; flex-wrap: wrap; padding-right: 40px;">
+                                <span class="ticket-status ${statusClass}">${statusText}</span>
+                                <span style="font-size: 14px; color: var(--text-gray);">#${ticket.id}</span>
+                                <span style="font-size: 14px; color: var(--text-gray);">${new Date(ticket.created_at).toLocaleDateString('ar-DZ')}</span>
+                            </div>
+                            <div style="background: var(--bg-main); border-radius: 12px; padding: 20px; margin-bottom: 24px;">
+                                <h3 style="font-family: 'Cairo', 'Inter', sans-serif; font-size: 16px; font-weight: 700; color: var(--text-dark); margin-bottom: 12px;">وصف المشروع:</h3>
+                                <p style="font-family: 'Cairo', 'Inter', sans-serif; font-size: 14px; color: var(--text-gray); line-height: 1.7; white-space: pre-wrap;">${InputSanitizer.sanitize(ticket.message)}</p>
+                            </div>
+                            ${replies.length > 0 ? `
+                                <div>
+                                    <h3 style="font-family: 'Cairo', 'Inter', sans-serif; font-size: 18px; font-weight: 700; color: var(--text-dark); margin-bottom: 16px;">الردود (${replies.length}):</h3>
+                                    <div style="display: flex; flex-direction: column; gap: 12px;">
+                                        ${replies.map(reply => `
+                                            <div style="background: var(--bg-main); border-radius: 12px; padding: 16px; border-right: 3px solid ${reply.is_admin ? 'var(--primary-blue)' : 'var(--border-light)'};">
+                                                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                                                    <span style="font-weight: 600; color: var(--text-dark);">${reply.is_admin ? 'الإدارة' : 'أنت'}</span>
+                                                    <span style="font-size: 12px; color: var(--text-gray);">${new Date(reply.created_at).toLocaleDateString('ar-DZ')}</span>
+                                                </div>
+                                                <p style="font-size: 14px; color: var(--text-gray); line-height: 1.6; white-space: pre-wrap;">${InputSanitizer.sanitize(reply.message)}</p>
+                                            </div>
+                                        `).join('')}
+                                    </div>
+                                </div>
+                            ` : '<p style="text-align: center; color: var(--text-gray); padding: 20px;">لا توجد ردود بعد</p>'}
+                            <div style="margin-top: 24px; display: flex; gap: 12px; justify-content: flex-end;">
+                                <a href="/Workroom?id=${ticket.id}" class="btn btn-primary">فتح في Workroom</a>
+                                <button class="btn btn-secondary" onclick="this.closest('.ticket-detail-modal').remove()">إغلاق</button>
+                            </div>
+                        </div>
+                    `;
+                    
+                    document.body.appendChild(modal);
+                    
+                    // Close on outside click
+                    modal.addEventListener('click', (e) => {
+                        if (e.target === modal) {
+                            modal.remove();
+                        }
+                    });
+                    
+                    // Close button hover
+                    const closeBtn = modal.querySelector('.ticket-detail-close');
+                    closeBtn.addEventListener('mouseenter', () => {
+                        closeBtn.style.background = 'var(--bg-main)';
+                        closeBtn.style.color = 'var(--text-dark)';
+                    });
+                    closeBtn.addEventListener('mouseleave', () => {
+                        closeBtn.style.background = 'none';
+                        closeBtn.style.color = 'var(--text-gray)';
+                    });
+                } else {
+                    Toast.error('فشل تحميل تفاصيل المشروع');
+                }
+            } catch (error) {
+                console.error('Show ticket details error:', error);
+                Toast.error('حدث خطأ أثناء تحميل التفاصيل');
+            }
+        }
+
+        // Check if user is logged in on page load
+        window.addEventListener('DOMContentLoaded', () => {
+            // Check for template ID in URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const templateId = urlParams.get('template');
+            if (templateId) {
+                // Load template data from localStorage if available
+                const templateData = localStorage.getItem('selectedTemplate');
+                if (templateData) {
+                    try {
+                        const template = JSON.parse(templateData);
+                        if (template.name) {
+                            document.getElementById('projectSubject').value = template.name;
+                        }
+                        if (template.description) {
+                            document.getElementById('projectDescription').value = template.description;
+                        }
+                    } catch (e) {
+                        console.error('Error loading template:', e);
+                    }
+                }
+            }
+            
+            // Wait a bit to ensure API is loaded
+            setTimeout(() => {
+                if (typeof API !== 'undefined' && API.getAuthToken) {
+                    const token = API.getAuthToken();
+                    const guestElements = document.querySelectorAll('.guest-only');
+                    const userElements = document.querySelectorAll('.user-only');
+                    
+                    if (token) {
+                        guestElements.forEach(el => el.style.display = 'none');
+                        userElements.forEach(el => el.style.display = '');
+                        loadMyProjects();
+                    } else {
+                        guestElements.forEach(el => el.style.display = '');
+                        userElements.forEach(el => el.style.display = 'none');
+                    }
+                } else {
+                    console.error('API is not loaded. Please refresh the page.');
+                }
+            }, 100);
+        });
+    </script>
+</body>
+</html>
+

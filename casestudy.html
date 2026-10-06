@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>دراسة حالة - deinkow</title>
+    <meta name="description" content="مشاريع مكتملة من deinkow - دراسات حالة">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="styles.css">
+    <script src="js/api.js"></script>
+    <script src="js/utils.js"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="/Home" class="logo">
+                    <img src="logo.png" alt="deinkow Logo" class="logo-image">
+                </a>
+                <nav class="nav">
+                    <a href="https://t.me/Deinkow" target="_blank" rel="noopener noreferrer" class="nav-link telegram-link" aria-label="Telegram Channel">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM16.64 8.8C16.49 10.38 15.84 14.22 15.51 15.99C15.37 16.74 15.09 16.99 14.83 17.02C14.25 17.07 13.81 16.64 13.25 16.27C12.37 15.69 11.87 15.33 11.02 14.77C10.03 14.12 10.67 13.76 11.24 13.18C11.39 13.03 13.95 10.7 14 10.49C14.0077 10.4582 14.0077 10.4246 14 10.393C13.97 10.29 13.89 10.23 13.8 10.18C13.68 10.12 13.55 10.15 13.44 10.18C13.28 10.24 11.95 11.16 9.4 12.61C8.89 12.88 8.42 13.02 8 13.02C7.54 13.02 6.63 12.8 5.95 12.61C5.25 12.41 4.68 12.3 4.73 11.94C4.75 11.79 5.01 11.63 5.5 11.45C8.11 10.44 10.25 9.65 11.93 9.08C14.49 8.2 15.25 7.95 15.54 7.95C15.63 7.95 15.83 7.98 15.96 8.09C16.07 8.18 16.1 8.3 16.11 8.38C16.12 8.46 16.14 8.63 16.13 8.79L16.64 8.8Z" fill="currentColor"/>
+                        </svg>
+                        تيليغرام
+                    </a>
+                    <a href="/Templates" class="nav-link">نماذج جاهزة</a>
+                    <a href="/Team" class="nav-link">الفريق</a>
+                    <a href="/RequestProject" class="nav-link">طلب مشروع جديد</a>
+                    <a href="/Dashboard" class="nav-link user-only" style="display:none;">لوحة التحكم</a>
+                    <a href="/Profile" class="nav-link user-only" style="display:none;">الملف الشخصي</a>
+                    <a href="/Login" class="btn btn-secondary guest-only">دخول</a>
+                    <button class="btn btn-secondary user-only" style="display:none;" onclick="API.auth.logout()">خروج</button>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Case Study Section -->
+    <section class="casestudy-section">
+        <div class="container">
+            <!-- Back Button -->
+            <a href="/Templates" class="back-link">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M19 12H5M12 19L5 12L12 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                رجوع للنماذج
+            </a>
+
+            <!-- Case Study Content -->
+            <div id="casestudyContent" class="casestudy-content">
+                <!-- Content will be loaded dynamically -->
+            </div>
+        </div>
+    </section>
+
+    <style>
+        .casestudy-section {
+            padding: 80px 0 100px;
+            background: var(--bg-main);
+            min-height: calc(100vh - 80px);
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--primary-blue);
+            text-decoration: none;
+            font-weight: 600;
+            margin-bottom: 32px;
+            transition: all 0.2s;
+        }
+
+        .back-link:hover {
+            color: var(--blue-dark);
+            transform: translateX(-4px);
+        }
+
+        .casestudy-content {
+            background: var(--bg-light);
+            border: 1px solid var(--border-light);
+            border-radius: 24px;
+            padding: 60px;
+            box-shadow: var(--shadow-xl);
+        }
+
+        .casestudy-header {
+            margin-bottom: 40px;
+            padding-bottom: 32px;
+            border-bottom: 2px solid var(--border-light);
+        }
+
+        .casestudy-title {
+            font-family: 'Cairo', 'Inter', sans-serif;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 900;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .casestudy-meta {
+            display: flex;
+            gap: 32px;
+            flex-wrap: wrap;
+            margin-top: 24px;
+        }
+
+        .casestudy-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 16px;
+            color: var(--text-gray);
+        }
+
+        .casestudy-meta-item svg {
+            color: var(--primary-blue);
+        }
+
+        .casestudy-meta-item strong {
+            color: var(--text-dark);
+            font-weight: 700;
+        }
+
+        .casestudy-image {
+            width: 100%;
+            margin: 40px 0;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .casestudy-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .casestudy-image-placeholder {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.1) 0%, rgba(124, 58, 237, 0.1) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-gray);
+            font-size: 18px;
+        }
+
+        .casestudy-section-content {
+            margin-bottom: 40px;
+        }
+
+        .casestudy-section-title {
+            font-family: 'Cairo', 'Inter', sans-serif;
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--border-light);
+        }
+
+        .casestudy-section-content p {
+            font-size: 18px;
+            line-height: 1.8;
+            color: var(--text-gray);
+            margin-bottom: 20px;
+        }
+
+        .casestudy-section-content ul {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+        }
+
+        .casestudy-section-content li {
+            font-size: 18px;
+            line-height: 1.8;
+            color: var(--text-gray);
+            padding: 12px 0;
+            padding-right: 32px;
+            position: relative;
+        }
+
+        .casestudy-section-content li:before {
+            content: "✓";
+            position: absolute;
+            right: 0;
+            color: var(--primary-blue);
+            font-weight: 700;
+            font-size: 20px;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .tech-tag {
+            padding: 8px 16px;
+            background: var(--bg-main);
+            border: 1px solid var(--border-light);
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .casestudy-cta {
+            margin-top: 60px;
+            padding: 40px;
+            background: var(--bg-main);
+            border-radius: 20px;
+            text-align: center;
+            border: 2px solid var(--primary-blue);
+        }
+
+        .casestudy-cta h3 {
+            font-family: 'Cairo', 'Inter', sans-serif;
+            font-size: 32px;
+            font-weight: 900;
+            color: var(--text-dark);
+            margin-bottom: 16px;
+        }
+
+        .casestudy-cta p {
+            font-size: 18px;
+            color: var(--text-gray);
+            margin-bottom: 32px;
+        }
+
+        .casestudy-cta-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        @media (max-width: 768px) {
+            .casestudy-content {
+                padding: 32px 24px;
+            }
+
+            .casestudy-meta {
+                flex-direction: column;
+                gap: 16px;
+            }
+
+            .casestudy-image-placeholder {
+                height: 250px;
+            }
+        }
+    </style>
+
+    <script>
+        // Case Studies Data
+        const caseStudies = {
+            1: {
+                title: "بوت Telegram لإدارة المجموعات",
+                problem: "عميل كان محتاج بوت Telegram متقدم لإدارة مجموعات كبيرة، مع ميزات متعددة مثل حظر الأعضاء، إدارة الصلاحيات، إحصائيات، ونظام إشعارات.",
+                solution: "طورنا بوت Telegram شامل باستخدام Python و Telethon API. البوت يتضمن لوحة تحكم بسيطة، قاعدة بيانات MySQL لحفظ البيانات، ونظام إشعارات متقدم. تم إضافة ميزات مثل إدارة الأعضاء، إحصائيات مفصلة، وأوامر مخصصة.",
+                techStack: ["Python", "Telethon", "MySQL", "Flask", "REST API"],
+                duration: "3 أسابيع",
+                result: "البوت يعمل بكفاءة عالية مع مجموعات تضم أكثر من 10,000 عضو. العميل راضي جداً وسهل عليه إدارة مجموعاته.",
+                image: "case-study-1.jpg"
+            },
+            2: {
+                title: "منصة تجارة إلكترونية متكاملة",
+                problem: "عميل كان محتاج موقع بيع أونلاين كامل مع سلة تسوق، نظام دفع، إدارة منتجات، وتتبع طلبات. الموقع يجب أن يكون سريع وآمن.",
+                solution: "طورنا منصة تجارة إلكترونية باستخدام PHP Laravel و MySQL. الموقع يتضمن نظام دفع متكامل، لوحة تحكم إدارية شاملة، نظام تقييمات، وإدارة المخزون. تم تحسين الأداء باستخدام Redis للتخزين المؤقت.",
+                techStack: ["PHP", "Laravel", "MySQL", "Redis", "JavaScript", "Bootstrap"],
+                duration: "5 أسابيع",
+                result: "الموقع يعمل بكفاءة عالية مع أكثر من 500 منتج. نظام الدفع يعمل بسلاسة والعميل راضي عن الأداء والأمان.",
+                image: "case-study-2.jpg"
+            },
+            3: {
+                title: "نظام إدارة مخصص للشركات",
+                problem: "شركة كانت محتاجة نظام إدارة شامل لإدارة الموظفين، المشاريع، الفواتير، والتقارير. النظام يجب أن يكون قابل للتخصيص حسب احتياجات الشركة.",
+                solution: "طورنا نظام إدارة مخصص باستخدام Node.js و React. النظام يتضمن إدارة مستخدمين متقدمة، نظام صلاحيات، لوحة تحكم تفاعلية، نظام تقارير شامل، وتكامل مع APIs خارجية. تم بناء API RESTful كامل.",
+                techStack: ["Node.js", "React", "MongoDB", "Express", "JWT", "REST API"],
+                duration: "6 أسابيع",
+                result: "النظام يعمل بكفاءة عالية ويخدم أكثر من 100 مستخدم. الشركة راضية جداً وطلبت إضافة ميزات جديدة.",
+                image: "case-study-3.jpg"
+            },
+            4: {
+                title: "تطبيق جوال لإدارة المهام",
+                problem: "عميل كان محتاج تطبيق جوال لإدارة المهام والملاحظات. التطبيق يجب أن يعمل على Android و iOS مع مزامنة سحابية.",
+                solution: "طورنا تطبيق جوال باستخدام React Native. التطبيق يتضمن إدارة مهام متقدمة، ملاحظات، إشعارات، ومزامنة سحابية. تم بناء API خلفي باستخدام Node.js و MongoDB.",
+                techStack: ["React Native", "Node.js", "MongoDB", "Firebase", "REST API"],
+                duration: "4 أسابيع",
+                result: "التطبيق متوفر على Google Play و App Store. المستخدمون راضون عن الأداء والميزات.",
+                image: "case-study-4.jpg"
+            },
+            5: {
+                title: "سكريبت أتمتة مخصص",
+                problem: "عميل كان محتاج سكريبت Python لأتمتة مهام متكررة في عمله. السكريبت يجب أن يعمل على خادم ويقوم بمهام معقدة.",
+                solution: "طورنا سكريبت Python متقدم مع واجهة سطر أوامر. السكريبت يتضمن معالجة ملفات، تكامل مع APIs، إرسال إشعارات، وتشغيل مجدول. تم إضافة نظام logging متقدم.",
+                techStack: ["Python", "Requests", "Cron", "Logging", "JSON"],
+                duration: "2 أسابيع",
+                result: "السكريبت يعمل بكفاءة عالية ويوفر للعميل ساعات من العمل يومياً. العميل راضي جداً وطلب إضافة ميزات جديدة.",
+                image: "case-study-5.jpg"
+            }
+        };
+
+        // Load case study
+        window.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const caseId = urlParams.get('id') || '1';
+            const caseStudy = caseStudies[caseId];
+
+            if (!caseStudy) {
+                document.getElementById('casestudyContent').innerHTML = `
+                    <div class="empty-state">
+                        <h2>دراسة الحالة غير موجودة</h2>
+                        <p>عذراً، دراسة الحالة المطلوبة غير موجودة.</p>
+                        <a href="/Templates" class="btn btn-primary">العودة للنماذج</a>
+                    </div>
+                `;
+                return;
+            }
+
+            renderCaseStudy(caseStudy);
+            checkAuthStatus();
+        });
+
+        // Render case study
+        function renderCaseStudy(caseStudy) {
+            const content = document.getElementById('casestudyContent');
+            
+            content.innerHTML = `
+                <div class="casestudy-header">
+                    <h1 class="casestudy-title">${caseStudy.title}</h1>
+                    <div class="casestudy-meta">
+                        <div class="casestudy-meta-item">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                                <polyline points="12 6 12 12 16 14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                            <span>المدة: <strong>${caseStudy.duration}</strong></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="casestudy-image">
+                    <div class="casestudy-image-placeholder">
+                        <p>صورة المشروع: ${caseStudy.title}</p>
+                    </div>
+                </div>
+
+                <div class="casestudy-section-content">
+                    <h2 class="casestudy-section-title">المشكلة</h2>
+                    <p>${caseStudy.problem}</p>
+                </div>
+
+                <div class="casestudy-section-content">
+                    <h2 class="casestudy-section-title">الحل</h2>
+                    <p>${caseStudy.solution}</p>
+                    <div class="tech-stack">
+                        ${caseStudy.techStack.map(tech => `<span class="tech-tag">${tech}</span>`).join('')}
+                    </div>
+                </div>
+
+                <div class="casestudy-section-content">
+                    <h2 class="casestudy-section-title">النتيجة</h2>
+                    <p>${caseStudy.result}</p>
+                </div>
+
+                <div class="casestudy-cta">
+                    <h3>حاب مشروع مشابه؟</h3>
+                    <p>تواصل معانا واطلب مشروعك الآن</p>
+                    <div class="casestudy-cta-buttons">
+                        <a href="/RequestProject" class="btn btn-primary btn-large">اطلب مشروعك</a>
+                        <a href="https://t.me/Deinkow" target="_blank" class="btn btn-secondary btn-large">تيليغرام</a>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Check auth status
+        function checkAuthStatus() {
+            const token = localStorage.getItem('authToken');
+            const userOnly = document.querySelectorAll('.user-only');
+            const guestOnly = document.querySelectorAll('.guest-only');
+            
+            if (token) {
+                userOnly.forEach(el => el.style.display = '');
+                guestOnly.forEach(el => el.style.display = 'none');
+            } else {
+                userOnly.forEach(el => el.style.display = 'none');
+                guestOnly.forEach(el => el.style.display = '');
+            }
+        }
+    </script>
+</body>
+</html>
+

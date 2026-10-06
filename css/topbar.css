@@ -1,0 +1,515 @@
+/* Topbar Component Styles */
+.topbar {
+  position: sticky;
+  top: 0;
+  height: var(--topbar-height);
+  background-color: var(--bg-main);
+  border-bottom: 1px solid var(--border-light);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--content-padding);
+  z-index: var(--z-sticky);
+  box-shadow: var(--shadow-sm);
+  backdrop-filter: blur(10px);
+  background-color: rgba(255, 255, 255, 0.95);
+}
+
+.topbar-left {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-lg);
+  flex: 1;
+}
+
+/* Logo Area with Eyes */
+.logo-area {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  text-decoration: none;
+  color: var(--text-dark);
+  transition: opacity var(--transition-fast);
+}
+
+.logo-area:hover {
+  opacity: 0.8;
+}
+
+.logo-image {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  border-radius: var(--radius-md);
+}
+
+.logo-text {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-extrabold);
+  background: var(--primary-gradient);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: none; /* Hide on mobile, show on desktop */
+}
+
+@media (min-width: 768px) {
+  .logo-text {
+    display: block;
+  }
+}
+
+/* Animated Eyes */
+.eyes-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-right: var(--spacing-sm);
+  position: relative;
+}
+
+.eye {
+  width: 24px;
+  height: 24px;
+  background-color: var(--bg-main);
+  border: 2px solid var(--text-dark);
+  border-radius: 50%;
+  position: relative;
+  overflow: hidden;
+  transition: border-color var(--transition-base);
+}
+
+.eye .pupil {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: var(--text-dark);
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+}
+
+/* Eye pupil movement - Using transform for smooth animation */
+.eye.pupil-left .pupil {
+  transform: translate(calc(-50% - 4px), -50%);
+}
+
+.eye.pupil-right .pupil {
+  transform: translate(calc(-50% + 4px), -50%);
+}
+
+.eye.pupil-up .pupil {
+  transform: translate(-50%, calc(-50% - 4px));
+}
+
+.eye.pupil-down .pupil {
+  transform: translate(-50%, calc(-50% + 4px));
+}
+
+.eye.pupil-up-left .pupil {
+  transform: translate(calc(-50% - 3px), calc(-50% - 3px));
+}
+
+.eye.pupil-up-right .pupil {
+  transform: translate(calc(-50% + 3px), calc(-50% - 3px));
+}
+
+.eye.pupil-down-left .pupil {
+  transform: translate(calc(-50% - 3px), calc(-50% + 3px));
+}
+
+.eye.pupil-down-right .pupil {
+  transform: translate(calc(-50% + 3px), calc(-50% + 3px));
+}
+
+/* Mobile Menu Toggle */
+.mobile-menu-toggle {
+  display: none;
+  width: 40px;
+  height: 40px;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-md);
+  color: var(--text-gray);
+  transition: all var(--transition-fast);
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.mobile-menu-toggle:hover {
+  background-color: var(--bg-hover);
+  color: var(--text-dark);
+}
+
+.mobile-menu-toggle svg {
+  width: 24px;
+  height: 24px;
+}
+
+@media (max-width: 1024px) {
+  .mobile-menu-toggle {
+    display: flex;
+  }
+}
+
+/* Topbar Right */
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+/* Notifications */
+.notifications-wrapper {
+  position: relative;
+}
+
+.notifications-btn {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-md);
+  color: var(--text-gray);
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.notifications-btn:hover {
+  background-color: var(--bg-hover);
+  color: var(--text-dark);
+}
+
+.notifications-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+.notifications-badge {
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  background-color: var(--status-error);
+  color: var(--text-white);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-bold);
+  padding: 2px 6px;
+  border-radius: var(--radius-full);
+  min-width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--bg-main);
+  line-height: 1;
+}
+
+.notifications-badge.hidden {
+  display: none;
+}
+
+/* Notifications Dropdown */
+.notifications-dropdown {
+  position: absolute;
+  top: calc(100% + var(--spacing-sm));
+  left: 0;
+  width: 320px;
+  max-height: 400px;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-xl);
+  z-index: var(--z-dropdown);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all var(--transition-base);
+  overflow: hidden;
+}
+
+.notifications-dropdown.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.notifications-header {
+  padding: var(--spacing-md) var(--spacing-lg);
+  border-bottom: 1px solid var(--border-light);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--bg-main);
+}
+
+.notifications-header h3 {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-extrabold);
+  margin: 0;
+  color: var(--text-dark);
+}
+
+.notifications-mark-all {
+  font-size: var(--font-size-xs);
+  color: var(--primary-blue);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--radius-md);
+  transition: all var(--transition-fast);
+}
+
+.notifications-mark-all:hover {
+  background-color: var(--bg-hover);
+}
+
+.notifications-list {
+  max-height: 300px;
+  overflow-y: auto;
+  padding: var(--spacing-sm);
+}
+
+.notification-item {
+  padding: var(--spacing-md);
+  border-radius: var(--radius-lg);
+  margin-bottom: var(--spacing-xs);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  border: 1px solid transparent;
+}
+
+.notification-item:hover {
+  background-color: var(--bg-hover);
+  border-color: var(--border-light);
+}
+
+.notification-item.unread {
+  background-color: var(--status-info-bg);
+  border-color: var(--status-info);
+}
+
+.notification-item-title {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-dark);
+  margin-bottom: var(--spacing-xs);
+}
+
+.notification-item-message {
+  font-size: var(--font-size-xs);
+  color: var(--text-gray);
+  line-height: var(--line-height-relaxed);
+  margin-bottom: var(--spacing-xs);
+}
+
+.notification-item-time {
+  font-size: var(--font-size-xs);
+  color: var(--text-light);
+}
+
+.notifications-empty {
+  padding: var(--spacing-xl);
+  text-align: center;
+  color: var(--text-gray);
+  font-size: var(--font-size-sm);
+}
+
+.notifications-footer {
+  padding: var(--spacing-md) var(--spacing-lg);
+  border-top: 1px solid var(--border-light);
+  text-align: center;
+  background-color: var(--bg-main);
+}
+
+.notifications-footer a {
+  font-size: var(--font-size-sm);
+  color: var(--primary-blue);
+  text-decoration: none;
+  font-weight: var(--font-weight-semibold);
+}
+
+.notifications-footer a:hover {
+  text-decoration: underline;
+}
+
+/* User Menu */
+.user-menu-wrapper {
+  position: relative;
+}
+
+.user-avatar-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-full);
+  border: 2px solid var(--border-light);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  overflow: hidden;
+  background-color: var(--bg-hover);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-dark);
+  font-size: var(--font-size-base);
+}
+
+.user-avatar-btn:hover {
+  border-color: var(--primary-blue);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.user-avatar-btn img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* User Dropdown */
+.user-dropdown {
+  position: absolute;
+  top: calc(100% + var(--spacing-sm));
+  left: 0;
+  width: 200px;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-xl);
+  z-index: var(--z-dropdown);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all var(--transition-base);
+  overflow: hidden;
+}
+
+.user-dropdown.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.user-dropdown-header {
+  padding: var(--spacing-md) var(--spacing-lg);
+  border-bottom: 1px solid var(--border-light);
+  background-color: var(--bg-main);
+}
+
+.user-dropdown-name {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-extrabold);
+  color: var(--text-dark);
+  margin-bottom: var(--spacing-xs);
+}
+
+.user-dropdown-email {
+  font-size: var(--font-size-xs);
+  color: var(--text-gray);
+}
+
+.user-dropdown-menu {
+  padding: var(--spacing-sm);
+}
+
+.user-dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md);
+  border-radius: var(--radius-lg);
+  color: var(--text-dark);
+  text-decoration: none;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  transition: all var(--transition-fast);
+  cursor: pointer;
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: right;
+}
+
+.user-dropdown-item:hover {
+  background-color: var(--bg-hover);
+}
+
+.user-dropdown-item.danger {
+  color: var(--status-error);
+}
+
+.user-dropdown-item.danger:hover {
+  background-color: var(--status-error-bg);
+}
+
+.user-dropdown-item svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+.user-dropdown-divider {
+  height: 1px;
+  background-color: var(--border-light);
+  margin: var(--spacing-xs) 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .topbar {
+    padding: 0 var(--spacing-md);
+  }
+  
+  .notifications-dropdown {
+    width: calc(100vw - var(--spacing-xl));
+    left: auto;
+    right: var(--spacing-md);
+  }
+  
+  .user-dropdown {
+    left: auto;
+    right: 0;
+  }
+  
+  .logo-text {
+    display: none;
+  }
+  
+  .eyes-container {
+    margin-right: 0;
+  }
+}
+
+/* RTL Support */
+[dir="rtl"] .notifications-dropdown {
+  left: auto;
+  right: 0;
+}
+
+[dir="rtl"] .user-dropdown {
+  left: auto;
+  right: 0;
+}
+
+/* Animation for eye blinking (optional) */
+@keyframes blink {
+  0%, 100% {
+    height: 24px;
+  }
+  50% {
+    height: 2px;
+  }
+}
+
+.eye.blinking {
+  animation: blink 0.3s ease-in-out;
+}

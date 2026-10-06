@@ -1,0 +1,39 @@
+/* Typing Headline Styles */
+.typing-headline-container {
+  display: inline-block;
+  font-family: var(--font-family-primary, 'Cairo', sans-serif);
+}
+
+.typing-headline-static {
+  font-weight: var(--font-weight-extrabold, 800);
+  color: var(--text-dark, #0F172A);
+}
+
+.typing-headline-dynamic {
+  font-weight: var(--font-weight-extrabold, 800);
+  background: var(--primary-gradient, linear-gradient(135deg, #2563EB 0%, #3B82F6 100%));
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  min-width: 1ch;
+  display: inline-block;
+}
+
+.typing-headline-cursor {
+  display: inline-block;
+  width: 2px;
+  margin-left: 4px;
+  background-color: var(--primary-blue, #2563EB);
+  animation: blinkCursor 1s infinite;
+  vertical-align: baseline;
+}
+
+@keyframes blinkCursor {
+  0%, 50% {
+    opacity: 1;
+  }
+  51%, 100% {
+    opacity: 0;
+  }
+}

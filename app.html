@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Deinkow - ستوديو برمجي وشبكة مطورين</title>
+    <meta name="description" content="Deinkow - ستوديو برمجي وشبكة مطورين نخدمولك أي مشروع">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- CSS Files - Load in order -->
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/theme.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/pages.css">
+    <link rel="stylesheet" href="css/toast.css">
+    <link rel="stylesheet" href="css/topbar.css">
+    <link rel="stylesheet" href="css/theme-toggle.css">
+    
+    <!-- Micro-interactions CSS -->
+    <link rel="stylesheet" href="css/intro.css">
+    <link rel="stylesheet" href="css/cursor.css">
+    <link rel="stylesheet" href="css/transitions.css">
+    <link rel="stylesheet" href="css/buttons.css">
+    <link rel="stylesheet" href="css/typing-headline.css">
+    <link rel="stylesheet" href="css/visitors.css">
+    <link rel="stylesheet" href="css/cta.css">
+    
+    <!-- Legacy styles (for backward compatibility) -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <link rel="icon" type="image/png" href="favicon.ico">
+</head>
+<body>
+    <!-- App Container -->
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar"></aside>
+        
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Topbar -->
+            <header class="topbar" id="topbar"></header>
+            
+            <!-- Content Area -->
+            <div class="content-area" id="contentArea">
+                <div class="page-container">
+                    <div class="skeleton skeleton-card">
+                        <div class="skeleton-title"></div>
+                        <div class="skeleton-text"></div>
+                        <div class="skeleton-text" style="width: 80%;"></div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    <!-- API & Utils (must load first) -->
+    <script src="js/api.js"></script>
+    <script src="js/utils.js"></script>
+    
+    <!-- Micro-interactions Components (load early) -->
+    <script src="js/components/Intro.js"></script>
+    <script src="js/components/Cursor.js"></script>
+    
+    <!-- Core Components -->
+    <script src="js/components/ThemeToggle.js"></script>
+    <script src="js/components/Toast.js"></script>
+    <script src="js/components/Loader.js"></script>
+    <script src="js/components/Sidebar.js"></script>
+    <script src="js/components/Topbar.js"></script>
+    
+    <!-- Additional Micro-interactions -->
+    <script src="js/components/TypingHeadline.js"></script>
+    <script src="js/components/Visitors.js"></script>
+    <script src="js/components/CTA.js"></script>
+    
+    <!-- Router -->
+    <script src="js/router.js"></script>
+    
+    <!-- App Initialization -->
+    <script>
+        // Initialize app when DOM is ready
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize Theme Toggle (must be first to apply theme before rendering)
+            // ThemeToggle auto-initializes, but ensure it's ready
+            if (!window.themeToggle) {
+                window.themeToggle = new ThemeToggle();
+            }
+            
+            // Initialize Toast system
+            Toast.init();
+            
+            // Initialize Sidebar
+            const sidebarEl = document.getElementById('sidebar');
+            if (sidebarEl) {
+                window.sidebarInstance = new Sidebar(sidebarEl);
+            }
+            
+            // Initialize Topbar (after theme is ready)
+            const topbarEl = document.getElementById('topbar');
+            if (topbarEl) {
+                window.topbarInstance = new Topbar(topbarEl);
+            }
+            
+            // Initialize Router
+            window.Router = new Router();
+            
+            // Register routes
+            registerRoutes();
+            
+            // Check authentication
+            checkAuth();
+        });
+        
+        function registerRoutes() {
+            if (!window.Router) return;
+            
+            // Dashboard route
+            Router.register('/dashboard', async () => {
+                return await loadPage('dashboard');
+            });
+            
+            // Projects route
+            Router.register('/projects', async () => {
+                return await loadPage('projects');
+            });
+            
+            // Request project route
+            Router.register('/request-project', async () => {
+                return await loadPage('request-project');
+            });
+            
+            // Profile route
+            Router.register('/profile', async () => {
+                return await loadPage('profile');
+            });
+            
+            // Support route
+            Router.register('/support', async () => {
+                return await loadPage('support');
+            });
+            
+            // Workroom route
+            Router.register('/workroom', async () => {
+                return await loadPage('workroom');
+            });
+            
+            // Admin route
+            Router.register('/admin', async () => {
+                return await loadPage('admin');
+            });
+        }
+        
+        async function loadPage(pageName) {
+            try {
+                // Show loading skeleton
+                const contentArea = document.getElementById('contentArea');
+                if (contentArea) {
+                    Loader.show(contentArea, 'card', 3);
+                }
+                
+                // Try to load page component
+                try {
+                    const pageModule = await import(`js/pages/${pageName}.js`);
+                    if (pageModule && pageModule.default) {
+                        return await pageModule.default();
+                    }
+                } catch (e) {
+                    // Fallback to HTML file
+                    const response = await fetch(`pages/${pageName}.html`);
+                    if (response.ok) {
+                        return await response.text();
+                    }
+                }
+                
+                // Final fallback - load from existing HTML files
+                const response = await fetch(`${pageName}.html`);
+                if (response.ok) {
+                    const html = await response.text();
+                    // Extract body content
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(html, 'text/html');
+                    const bodyContent = doc.body.innerHTML;
+                    return bodyContent;
+                }
+                
+                throw new Error('Page not found');
+            } catch (error) {
+                console.error('Error loading page:', error);
+                return `
+                    <div class="empty-state">
+                        <h2 class="empty-state-title">خطأ في التحميل</h2>
+                        <p class="empty-state-description">حدث خطأ أثناء تحميل الصفحة. يرجى المحاولة مرة أخرى.</p>
+                        <button class="btn btn-primary" onclick="Router.navigate('/dashboard')">العودة للوحة التحكم</button>
+                    </div>
+                `;
+            }
+        }
+        
+        function checkAuth() {
+            const token = API?.getAuthToken?.();
+            const currentPath = window.location.pathname;
+            const publicRoutes = ['/login', '/register', '/'];
+            
+            // If no token and trying to access protected route
+            if (!token && !publicRoutes.includes(currentPath)) {
+                Router.navigate('/login');
+            }
+            
+            // If has token and on login/register, redirect to dashboard
+            if (token && (currentPath.includes('login') || currentPath.includes('register'))) {
+                Router.navigate('/dashboard');
+            }
+        }
+        
+        // Handle link clicks for SPA navigation
+        document.addEventListener('click', (e) => {
+            const link = e.target.closest('a[href^="/"]');
+            if (link && link.href.startsWith(window.location.origin)) {
+                e.preventDefault();
+                const route = new URL(link.href).pathname;
+                if (Router) {
+                    Router.navigate(route);
+                }
+            }
+        });
+    </script>
+</body>
+</html>

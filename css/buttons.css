@@ -1,0 +1,68 @@
+/* Button Micro-Interactions - Haptic Illusion */
+.btn,
+button:not([disabled]),
+input[type="submit"],
+input[type="button"],
+a.btn {
+  position: relative;
+  transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-origin: center;
+}
+
+.btn:active:not(:disabled),
+button:active:not([disabled]),
+input[type="submit"]:active,
+input[type="button"]:active {
+  transform: scale(0.96);
+}
+
+/* Smooth return animation */
+.btn:not(:active):not(:disabled),
+button:not(:active):not([disabled]),
+input[type="submit"]:not(:active),
+input[type="button"]:not(:active) {
+  transform: scale(1);
+}
+
+/* Prevent text selection during click */
+.btn,
+button {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+/* Ripple effect (optional enhancement) */
+.btn-ripple {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-ripple::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.btn-ripple:active::after {
+  width: 300px;
+  height: 300px;
+}
+
+/* Hover lift effect */
+.btn-lift:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.btn-lift:active:not(:disabled) {
+  transform: translateY(0) scale(0.96);
+}

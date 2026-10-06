@@ -1,0 +1,55 @@
+/* Smooth Page Transitions */
+.content-area {
+  position: relative;
+  min-height: 100vh;
+}
+
+.page-transition {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+}
+
+.page-transition.fade-out {
+  opacity: 0;
+  transform: translateY(-10px);
+  pointer-events: none;
+}
+
+.page-transition.fade-in {
+  animation: fadeInUp 0.4s ease-out forwards;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Loading state during transition */
+.content-area.transitioning {
+  pointer-events: none;
+  position: relative;
+}
+
+.content-area.transitioning::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.5);
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.content-area.transitioning.loading::after {
+  opacity: 1;
+}

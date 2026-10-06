@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>لوحة التحكم - deinkow</title>
+    <meta name="description" content="لوحة تحكم deinkow - إدارة مشاريعك البرمجية">
+    <link rel="icon" type="image/png" href="favicon.ico">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="styles.css">
+    <script src="js/api.js"></script>
+    <script src="js/utils.js"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="/Home" class="logo">
+                    <img src="logo.png" alt="deinkow Logo" class="logo-image">
+                </a>
+                <nav class="nav">
+                    <a href="https://t.me/Deinkow" target="_blank" rel="noopener noreferrer" class="nav-link telegram-link" aria-label="Telegram Channel">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM16.64 8.8C16.49 10.38 15.84 14.22 15.51 15.99C15.37 16.74 15.09 16.99 14.83 17.02C14.25 17.07 13.81 16.64 13.25 16.27C12.37 15.69 11.87 15.33 11.02 14.77C10.03 14.12 10.67 13.76 11.24 13.18C11.39 13.03 13.95 10.7 14 10.49C14.0077 10.4582 14.0077 10.4246 14 10.393C13.97 10.29 13.89 10.23 13.8 10.18C13.68 10.12 13.55 10.15 13.44 10.18C13.28 10.24 11.95 11.16 9.4 12.61C8.89 12.88 8.42 13.02 8 13.02C7.54 13.02 6.63 12.8 5.95 12.61C5.25 12.41 4.68 12.3 4.73 11.94C4.75 11.79 5.01 11.63 5.5 11.45C8.11 10.44 10.25 9.65 11.93 9.08C14.49 8.2 15.25 7.95 15.54 7.95C15.63 7.95 15.83 7.98 15.96 8.09C16.07 8.18 16.1 8.3 16.11 8.38C16.12 8.46 16.14 8.63 16.13 8.79L16.64 8.8Z" fill="currentColor"/>
+                        </svg>
+                        تيليغرام
+                    </a>
+                    <a href="/Templates" class="nav-link">نماذج جاهزة</a>
+                    <a href="/Team" class="nav-link">الفريق</a>
+                    <a href="/RequestProject" class="nav-link">طلب مشروع جديد</a>
+                    <a href="/Profile" class="nav-link">الملف الشخصي</a>
+                    <!-- Notifications -->
+                    <div class="notifications-container">
+                        <button class="notifications-btn" id="notificationsBtn" onclick="toggleNotifications()">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M13.73 21a2 2 0 0 1-3.46 0" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <span class="notifications-badge" id="notificationsBadge" style="display: none;">0</span>
+                        </button>
+                        <div class="notifications-dropdown" id="notificationsDropdown">
+                            <div class="notifications-header">
+                                <h3>الإشعارات</h3>
+                                <button class="notifications-mark-all" onclick="markAllAsRead()">تعليم الكل كمقروء</button>
+                            </div>
+                            <div class="notifications-list" id="notificationsList">
+                                <div class="notifications-loading">جاري التحميل...</div>
+                            </div>
+                            <div class="notifications-footer">
+                                <a href="#" onclick="showAllNotifications(); return false;">عرض الكل</a>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn btn-secondary" onclick="API.auth.logout()">خروج</button>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Welcome Modal for New Users -->
+    <div id="welcomeModal" class="welcome-modal" style="display: none;">
+        <div class="welcome-modal-overlay"></div>
+        <div class="welcome-modal-content">
+            <button class="welcome-modal-close" onclick="closeWelcomeModal()">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+            <div class="welcome-modal-header">
+                <div class="welcome-modal-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <h2 class="welcome-modal-title">مرحباً بك في Deinkow! 🎉</h2>
+                <p class="welcome-modal-subtitle">نحن سعداء بانضمامك إلينا</p>
+            </div>
+            <div class="welcome-modal-body">
+                <div class="welcome-step">
+                    <div class="welcome-step-number">1</div>
+                    <div class="welcome-step-content">
+                        <h3>اطلب مشروعك</h3>
+                        <p>اذهب إلى صفحة "طلب مشروع جديد" واملأ النموذج بكل التفاصيل المطلوبة لمشروعك البرمجي</p>
+                    </div>
+                </div>
+                <div class="welcome-step">
+                    <div class="welcome-step-number">2</div>
+                    <div class="welcome-step-content">
+                        <h3>نراجع طلبك</h3>
+                        <p>فريقنا سيراجع طلبك ويتواصل معك على Telegram لمناقشة التفاصيل والميزانية</p>
+                    </div>
+                </div>
+                <div class="welcome-step">
+                    <div class="welcome-step-number">3</div>
+                    <div class="welcome-step-content">
+                        <h3>نبدأ العمل</h3>
+                        <p>بعد الموافقة على الميزانية، نبدأ في تنفيذ مشروعك بأعلى معايير الجودة</p>
+                    </div>
+                </div>
+                <div class="welcome-step">
+                    <div class="welcome-step-number">4</div>
+                    <div class="welcome-step-content">
+                        <h3>تسليم المشروع</h3>
+                        <p>نوفر لك المشروع جاهزاً مع الدعم الفني والمساعدة في أي تعديلات</p>
+                    </div>
+                </div>
+            </div>
+            <div class="welcome-modal-footer">
+                <button class="btn btn-primary btn-large" onclick="closeWelcomeModal()">فهمت، دعني أبدأ!</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dashboard Section -->
+    <section class="dashboard-section">
+        <div class="container">
+            <!-- Header Section -->
+            <div class="dashboard-header">
+                <div class="dashboard-header-content">
+                    <h1 class="dashboard-title">مرحباً، <span id="userName">جاري التحميل...</span></h1>
+                    <p class="dashboard-subtitle">نظرة عامة على مشاريعك</p>
+                </div>
+                <a href="/RequestProject" class="btn btn-primary btn-icon">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10 3V17M3 10H17" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    مشروع جديد
+                </a>
+            </div>
+
+            <!-- Stats Cards -->
+            <div class="stats-grid" id="statsGrid">
+                <div class="stat-card stat-card-primary">
+                    <div class="stat-card-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <div class="stat-card-content">
+                        <div class="stat-card-value" id="statOpen">0</div>
+                        <div class="stat-card-label">مشاريع مفتوحة</div>
+                    </div>
+                </div>
+                <div class="stat-card stat-card-warning">
+                    <div class="stat-card-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2V6M12 18V22M4 12H8M16 12H20M19.07 19.07L16.24 16.24M19.07 4.93L16.24 7.76M4.93 19.07L7.76 16.24M4.93 4.93L7.76 7.76" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <div class="stat-card-content">
+                        <div class="stat-card-value" id="statInProgress">0</div>
+                        <div class="stat-card-label">قيد التنفيذ</div>
+                    </div>
+                </div>
+                <div class="stat-card stat-card-success">
+                    <div class="stat-card-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <div class="stat-card-content">
+                        <div class="stat-card-value" id="statCompleted">0</div>
+                        <div class="stat-card-label">مكتملة</div>
+                    </div>
+                </div>
+                <div class="stat-card stat-card-info">
+                    <div class="stat-card-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M3 8L10.89 13.26C11.2187 13.4793 11.6049 13.5963 12 13.5963C12.3951 13.5963 12.7813 13.4793 13.11 13.26L21 8M5 19H19C19.5304 19 20.0391 18.7893 20.4142 18.4142C20.7893 18.0391 21 17.5304 21 17V7C21 6.46957 20.7893 5.96086 20.4142 5.58579C20.0391 5.21071 19.5304 5 19 5H5C4.46957 5 3.96086 5.21071 3.58579 5.58579C3.21071 5.96086 3 6.46957 3 7V17C3 17.5304 3.21071 18.0391 3.58579 18.4142C3.96086 18.7893 4.46957 19 5 19Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <div class="stat-card-content">
+                        <div class="stat-card-value" id="statPendingReplies">0</div>
+                        <div class="stat-card-label">ردود انتظار</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="dashboard-content">
+                <!-- Projects Section -->
+                <div class="dashboard-main">
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <div class="card-header-content">
+                                <h2 class="card-title">مشاريعي</h2>
+                                <p class="card-subtitle">جميع مشاريعك في مكان واحد</p>
+                            </div>
+                            <div class="card-header-actions">
+                                <button class="btn-filter active" data-filter="all" onclick="filterProjects('all')">الكل</button>
+                                <button class="btn-filter" data-filter="open" onclick="filterProjects('open')">مفتوحة</button>
+                                <button class="btn-filter" data-filter="in_progress" onclick="filterProjects('in_progress')">قيد التنفيذ</button>
+                                <button class="btn-filter" data-filter="resolved" onclick="filterProjects('resolved')">مكتملة</button>
+                            </div>
+                        </div>
+                        <div class="projects-container">
+                            <div id="projectsList" class="projects-list">
+                                <div class="projects-loading">
+                                    <div class="loading-spinner"></div>
+                                    <p>جاري تحميل المشاريع...</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sidebar -->
+                <div class="dashboard-sidebar">
+                    <!-- Quick Actions -->
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <h2 class="card-title">إجراءات سريعة</h2>
+                        </div>
+                        <div class="quick-actions">
+                            <a href="/RequestProject" class="quick-action-item">
+                                <div class="quick-action-icon quick-action-primary">
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M10 3V17M3 10H17" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                    </svg>
+                                </div>
+                                <div class="quick-action-content">
+                                    <div class="quick-action-title">طلب مشروع جديد</div>
+                                    <div class="quick-action-desc">ابدأ مشروعك الآن</div>
+                                </div>
+                            </a>
+                            <a href="/Templates" class="quick-action-item">
+                                <div class="quick-action-icon quick-action-secondary">
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M4 4H16V16H4V4ZM4 2C2.89543 2 2 2.89543 2 4V16C2 17.1046 2.89543 18 4 18H16C17.1046 18 18 17.1046 18 16V4C18 2.89543 17.1046 2 16 2H4Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </div>
+                                <div class="quick-action-content">
+                                    <div class="quick-action-title">استعراض النماذج</div>
+                                    <div class="quick-action-desc">نماذج جاهزة للمشاريع</div>
+                                </div>
+                            </a>
+                            <a href="https://t.me/Deinkow" target="_blank" class="quick-action-item">
+                                <div class="quick-action-icon quick-action-success">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM16.64 8.8C16.49 10.38 15.84 14.22 15.51 15.99C15.37 16.74 15.09 16.99 14.83 17.02C14.25 17.07 13.81 16.64 13.25 16.27C12.37 15.69 11.87 15.33 11.02 14.77C10.03 14.12 10.67 13.76 11.24 13.18C11.39 13.03 13.95 10.7 14 10.49C14.0077 10.4582 14.0077 10.4246 14 10.393C13.97 10.29 13.89 10.23 13.8 10.18C13.68 10.12 13.55 10.15 13.44 10.18C13.28 10.24 11.95 11.16 9.4 12.61C8.89 12.88 8.42 13.02 8 13.02C7.54 13.02 6.63 12.8 5.95 12.61C5.25 12.41 4.68 12.3 4.73 11.94C4.75 11.79 5.01 11.63 5.5 11.45C8.11 10.44 10.25 9.65 11.93 9.08C14.49 8.2 15.25 7.95 15.54 7.95C15.63 7.95 15.83 7.98 15.96 8.09C16.07 8.18 16.1 8.3 16.11 8.38C16.12 8.46 16.14 8.63 16.13 8.79L16.64 8.8Z" fill="currentColor"/>
+                                    </svg>
+                                </div>
+                                <div class="quick-action-content">
+                                    <div class="quick-action-title">تواصل معنا</div>
+                                    <div class="quick-action-desc">عبر Telegram</div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Recent Activity -->
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <h2 class="card-title">النشاط الأخير</h2>
+                        </div>
+                        <div id="recentActivity" class="activity-feed">
+                            <div class="activity-empty">
+                                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M21 15C21 15.5304 20.7893 16.0391 20.4142 16.4142C20.0391 16.7893 19.5304 17 19 17H7L3 21V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H19C19.5304 3 20.0391 3.21071 20.4142 3.58579C20.7893 3.96086 21 4.46957 21 5V15Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.3"/>
+                                </svg>
+                                <p>لا يوجد نشاط حديث</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        let allTickets = [];
+        let currentFilter = 'all';
+
+        // Check authentication and load user data
+        window.addEventListener('DOMContentLoaded', async () => {
+            const token = localStorage.getItem('authToken');
+            if (!token) {
+                Toast.warning('يرجى تسجيل الدخول للمتابعة');
+                setTimeout(() => window.location.href = '/Login', 1000);
+                return;
+            }
+            
+            const userNameEl = document.getElementById('userName');
+            if (userNameEl) {
+                userNameEl.textContent = 'جاري التحميل...';
+            }
+            
+            try {
+                const userResponse = await API.auth.getCurrentUser();
+                if (userResponse && userResponse.success) {
+                    const user = userResponse.data.user;
+                    if (userNameEl) {
+                        userNameEl.textContent = InputSanitizer.sanitize(user.username);
+                    }
+                    loadDashboardData();
+                } else {
+                    throw new Error('Failed to load user');
+                }
+            } catch (error) {
+                Logger.error('Dashboard error:', error);
+                if (userNameEl) {
+                    userNameEl.textContent = 'مستخدم';
+                }
+                const isAuthError = error.status === 401 || error.status === 403;
+                if (isAuthError) {
+                    Toast.error('انتهت صلاحية الجلسة');
+                    setTimeout(() => {
+                        API.removeAuthToken();
+                        window.location.href = '/Login';
+                    }, 2000);
+                }
+            }
+        });
+
+        // Load dashboard data
+        async function loadDashboardData() {
+            try {
+                const response = await API.support.getMyTickets();
+                if (response.success && response.data.tickets) {
+                    allTickets = response.data.tickets;
+                    updateStats(allTickets);
+                    renderProjects(allTickets);
+                    loadRecentActivity(allTickets);
+                    loadNotifications();
+                } else {
+                    showEmptyState();
+                }
+            } catch (error) {
+                Logger.error('Error loading dashboard:', error);
+                showEmptyState();
+            }
+        }
+
+        // Update stats
+        function updateStats(tickets) {
+            const stats = {
+                open: tickets.filter(t => t.status === 'open').length,
+                in_progress: tickets.filter(t => t.status === 'in_progress').length,
+                resolved: tickets.filter(t => t.status === 'resolved' || t.status === 'closed').length,
+                pendingReplies: 0
+            };
+            
+            document.getElementById('statOpen').textContent = stats.open;
+            document.getElementById('statInProgress').textContent = stats.in_progress;
+            document.getElementById('statCompleted').textContent = stats.resolved;
+            document.getElementById('statPendingReplies').textContent = stats.pendingReplies;
+        }
+
+        // Render projects
+        function renderProjects(tickets) {
+            const projectsList = document.getElementById('projectsList');
+            if (!projectsList) return;
+
+            const filteredTickets = currentFilter === 'all' 
+                ? tickets 
+                : tickets.filter(t => {
+                    if (currentFilter === 'resolved') {
+                        return t.status === 'resolved' || t.status === 'closed';
+                    }
+                    return t.status === currentFilter;
+                });
+
+            if (filteredTickets.length === 0) {
+                projectsList.innerHTML = `
+                    <div class="projects-empty">
+                        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.3"/>
+                        </svg>
+                        <h3>لا توجد مشاريع</h3>
+                        <p>${currentFilter === 'all' ? 'ابدأ بإنشاء مشروعك الأول' : 'لا توجد مشاريع بهذه الحالة'}</p>
+                        ${currentFilter === 'all' ? '<a href="/RequestProject" class="btn btn-primary">طلب مشروع جديد</a>' : ''}
+                    </div>
+                `;
+                return;
+            }
+
+            projectsList.innerHTML = filteredTickets.map(ticket => {
+                let budget = 'غير محدد';
+                try {
+                    if (ticket.message) {
+                        // Try to extract budget from message
+                        const budgetMatch = ticket.message.match(/الميزانية[:\s]+([^\n]+)/i);
+                        if (budgetMatch) {
+                            budget = budgetMatch[1].trim();
+                        } else {
+                            // Try JSON parse if message contains JSON
+                            const jsonMatch = ticket.message.match(/\{.*\}/);
+                            if (jsonMatch) {
+                                const meta = JSON.parse(jsonMatch[0]);
+                                budget = meta.budget || budget;
+                            }
+                        }
+                    }
+                } catch (e) {
+                    // If parsing fails, use default
+                    budget = 'غير محدد';
+                }
+                
+                return `
+                    <div class="project-item" data-status="${ticket.status}">
+                        <div class="project-item-header">
+                            <div class="project-item-info">
+                                <h3 class="project-item-title">${InputSanitizer.sanitize(ticket.subject)}</h3>
+                                <span class="project-item-id">#${ticket.id}</span>
+                            </div>
+                            ${getStatusBadge(ticket.status)}
+                        </div>
+                        <div class="project-item-body">
+                            <div class="project-item-meta">
+                                <div class="project-meta-item">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M12 2V6M12 18V22M4 12H8M16 12H20M19.07 19.07L16.24 16.24M19.07 4.93L16.24 7.76M4.93 19.07L7.76 16.24M4.93 4.93L7.76 7.76" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                    </svg>
+                                    <span>الميزانية: ${budget}</span>
+                                </div>
+                                <div class="project-meta-item">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                                        <polyline points="12 6 12 12 16 14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                    </svg>
+                                    <span>${formatDate(ticket.updated_at)}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-item-footer">
+                            <a href="/Workroom?id=${ticket.id}" class="btn btn-sm btn-primary">فتح المشروع</a>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Filter projects
+        function filterProjects(filter) {
+            currentFilter = filter;
+            
+            // Update filter buttons
+            document.querySelectorAll('.btn-filter').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.dataset.filter === filter) {
+                    btn.classList.add('active');
+                }
+            });
+            
+            renderProjects(allTickets);
+        }
+
+        // Show empty state
+        function showEmptyState() {
+            const projectsList = document.getElementById('projectsList');
+            if (projectsList) {
+                projectsList.innerHTML = `
+                    <div class="projects-empty">
+                        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.3"/>
+                        </svg>
+                        <h3>لا توجد مشاريع</h3>
+                        <p>ابدأ بإنشاء مشروعك الأول</p>
+                        <a href="/RequestProject" class="btn btn-primary">طلب مشروع جديد</a>
+                    </div>
+                `;
+            }
+        }
+
+        // Load recent activity
+        async function loadRecentActivity(tickets) {
+            const activityFeed = document.getElementById('recentActivity');
+            if (!activityFeed) return;
+
+            try {
+                const activities = [];
+                for (const ticket of tickets.slice(0, 5)) {
+                    try {
+                        const ticketDetail = await API.support.getTicket(ticket.id);
+                        if (ticketDetail.success && ticketDetail.data.replies) {
+                            ticketDetail.data.replies.forEach(reply => {
+                                if (reply.is_admin) {
+                                    activities.push({
+                                        type: 'admin_reply',
+                                        ticketId: ticket.id,
+                                        ticketSubject: ticket.subject,
+                                        message: reply.message.substring(0, 100),
+                                        time: reply.created_at,
+                                        isRead: false
+                                    });
+                                }
+                            });
+                        }
+                    } catch (e) {
+                        Logger.error('Error loading ticket detail:', e);
+                    }
+                }
+
+                if (activities.length > 0) {
+                    activities.sort((a, b) => new Date(b.time) - new Date(a.time));
+                    activityFeed.innerHTML = activities.slice(0, 3).map(activity => `
+                        <div class="activity-item">
+                            <div class="activity-icon">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M21 15C21 15.5304 20.7893 16.0391 20.4142 16.4142C20.0391 16.7893 19.5304 17 19 17H7L3 21V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H19C19.5304 3 20.0391 3.21071 20.4142 3.58579C20.7893 3.96086 21 4.46957 21 5V15Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                            <div class="activity-content">
+                                <div class="activity-text">
+                                    <strong>رد جديد</strong> على ${InputSanitizer.sanitize(activity.ticketSubject)}
+                                </div>
+                                <div class="activity-time">${formatRelativeTime(activity.time)}</div>
+                            </div>
+                        </div>
+                    `).join('');
+                } else {
+                    activityFeed.innerHTML = `
+                        <div class="activity-empty">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M21 15C21 15.5304 20.7893 16.0391 20.4142 16.4142C20.0391 16.7893 19.5304 17 19 17H7L3 21V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H19C19.5304 3 20.0391 3.21071 20.4142 3.58579C20.7893 3.96086 21 4.46957 21 5V15Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.3"/>
+                            </svg>
+                            <p>لا يوجد نشاط حديث</p>
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                Logger.error('Error loading recent activity:', error);
+                activityFeed.innerHTML = `
+                    <div class="activity-empty">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M21 15C21 15.5304 20.7893 16.0391 20.4142 16.4142C20.0391 16.7893 19.5304 17 19 17H7L3 21V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H19C19.5304 3 20.0391 3.21071 20.4142 3.58579C20.7893 3.96086 21 4.46957 21 5V15Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.3"/>
+                        </svg>
+                        <p>لا يوجد نشاط حديث</p>
+                    </div>
+                `;
+            }
+        }
+
+        // Helper functions
+        function getStatusBadge(status) {
+            const badges = {
+                'open': '<span class="status-badge status-open">مفتوح</span>',
+                'agreed': '<span class="status-badge status-agreed">متفق عليه</span>',
+                'in_progress': '<span class="status-badge status-progress">قيد التنفيذ</span>',
+                'delivery': '<span class="status-badge status-delivery">تسليم</span>',
+                'resolved': '<span class="status-badge status-resolved">مكتمل</span>',
+                'closed': '<span class="status-badge status-closed">مغلق</span>'
+            };
+            return badges[status] || badges['open'];
+        }
+        
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('ar-DZ', { day: 'numeric', month: 'short', year: 'numeric' });
+        }
+
+        function formatRelativeTime(dateString) {
+            const date = new Date(dateString);
+            const now = new Date();
+            const diff = now - date;
+            const minutes = Math.floor(diff / 60000);
+            const hours = Math.floor(diff / 3600000);
+            const days = Math.floor(diff / 86400000);
+
+            if (minutes < 1) return 'الآن';
+            if (minutes < 60) return `منذ ${minutes} دقيقة`;
+            if (hours < 24) return `منذ ${hours} ساعة`;
+            if (days < 7) return `منذ ${days} يوم`;
+            return formatDate(dateString);
+        }
+
+        // Welcome Modal Functions
+        function checkWelcomeModal() {
+            // Check if user has already seen the welcome modal
+            const hasSeenWelcome = localStorage.getItem('deinkow_welcome_seen');
+            if (!hasSeenWelcome) {
+                // Show modal after a short delay
+                setTimeout(() => {
+                    showWelcomeModal();
+                }, 500);
+            }
+        }
+
+        function showWelcomeModal() {
+            const modal = document.getElementById('welcomeModal');
+            if (modal) {
+                modal.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeWelcomeModal() {
+            const modal = document.getElementById('welcomeModal');
+            if (modal) {
+                modal.style.display = 'none';
+                document.body.style.overflow = '';
+                // Mark as seen so it won't show again
+                localStorage.setItem('deinkow_welcome_seen', 'true');
+            }
+        }
+
+        // Close modal on overlay click
+        document.addEventListener('DOMContentLoaded', () => {
+            const modal = document.getElementById('welcomeModal');
+            const overlay = modal?.querySelector('.welcome-modal-overlay');
+            if (overlay) {
+                overlay.addEventListener('click', closeWelcomeModal);
+            }
+        });
+    </script>
+</body>
+</html>

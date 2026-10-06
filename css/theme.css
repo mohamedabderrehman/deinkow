@@ -1,0 +1,30 @@
+/* Theme Transitions */
+/* Apply smooth transitions to color properties only */
+*,
+*::before,
+*::after {
+  transition-property: background-color, color, border-color, box-shadow, fill, stroke;
+  transition-duration: 0.2s;
+  transition-timing-function: ease;
+}
+
+/* Exclude elements that shouldn't transition */
+img,
+svg,
+video,
+iframe,
+canvas,
+input[type="range"],
+input[type="color"],
+.progress-bar,
+.progress-fill,
+.skeleton,
+.eye .pupil,
+.custom-cursor {
+  transition: none;
+}
+
+/* Exclude layout and transform properties */
+* {
+  transition-property: background-color, color, border-color, box-shadow, fill, stroke;
+}

@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>نماذج جاهزة - deinkow</title>
+    <meta name="description" content="اختر من نماذجنا الجاهزة أو اطلب مشروع مخصص - deinkow">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="styles.css">
+    <script src="js/api.js"></script>
+    <script src="js/utils.js"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="/Home" class="logo">
+                    <img src="logo.png" alt="deinkow Logo" class="logo-image">
+                </a>
+                <nav class="nav">
+                    <a href="https://t.me/Deinkow" target="_blank" rel="noopener noreferrer" class="nav-link telegram-link" aria-label="Telegram Channel">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM16.64 8.8C16.49 10.38 15.84 14.22 15.51 15.99C15.37 16.74 15.09 16.99 14.83 17.02C14.25 17.07 13.81 16.64 13.25 16.27C12.37 15.69 11.87 15.33 11.02 14.77C10.03 14.12 10.67 13.76 11.24 13.18C11.39 13.03 13.95 10.7 14 10.49C14.0077 10.4582 14.0077 10.4246 14 10.393C13.97 10.29 13.89 10.23 13.8 10.18C13.68 10.12 13.55 10.15 13.44 10.18C13.28 10.24 11.95 11.16 9.4 12.61C8.89 12.88 8.42 13.02 8 13.02C7.54 13.02 6.63 12.8 5.95 12.61C5.25 12.41 4.68 12.3 4.73 11.94C4.75 11.79 5.01 11.63 5.5 11.45C8.11 10.44 10.25 9.65 11.93 9.08C14.49 8.2 15.25 7.95 15.54 7.95C15.63 7.95 15.83 7.98 15.96 8.09C16.07 8.18 16.1 8.3 16.11 8.38C16.12 8.46 16.14 8.63 16.13 8.79L16.64 8.8Z" fill="currentColor"/>
+                        </svg>
+                        تيليغرام
+                    </a>
+                    <a href="/Templates" class="nav-link active">نماذج جاهزة</a>
+                    <a href="/Team" class="nav-link">الفريق</a>
+                    <a href="/RequestProject" class="nav-link">طلب مشروع جديد</a>
+                    <a href="/Dashboard" class="nav-link user-only" style="display:none;">لوحة التحكم</a>
+                    <a href="/Profile" class="nav-link user-only" style="display:none;">الملف الشخصي</a>
+                    <a href="/Login" class="btn btn-secondary guest-only">دخول</a>
+                    <button class="btn btn-secondary user-only" style="display:none;" onclick="API.auth.logout()">خروج</button>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Templates Section -->
+    <section class="templates-section">
+        <div class="container">
+            <div class="templates-header">
+                <h1 class="templates-title">نماذج جاهزة</h1>
+                <p class="templates-subtitle">اختر من نماذجنا الجاهزة أو اطلب مشروع مخصص حسب احتياجاتك</p>
+            </div>
+
+            <!-- Templates Grid -->
+            <div class="templates-grid" id="templatesGrid">
+                <!-- Templates will be loaded dynamically from localStorage -->
+            </div>
+
+            <!-- Custom Project CTA -->
+            <div class="custom-project-cta">
+                <div class="custom-project-card">
+                    <h2>ما لقيتش اللي تحب؟</h2>
+                    <p>اطلب مشروع مخصص حسب احتياجاتك بالضبط</p>
+                    <a href="/RequestProject" class="btn btn-primary btn-large">اطلب مشروع مخصص</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <style>
+        .templates-section {
+            padding: 80px 0 100px;
+            background: var(--bg-main);
+        }
+
+        .templates-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .templates-title {
+            font-family: 'Cairo', 'Inter', sans-serif;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 900;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 16px;
+        }
+
+        .templates-subtitle {
+            font-family: 'Cairo', 'Inter', sans-serif;
+            font-size: 20px;
+            color: var(--text-gray);
+        }
+
+        .templates-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 32px;
+            margin-bottom: 60px;
+        }
+
+        .template-card {
+            background: var(--bg-light);
+            border: 1px solid var(--border-light);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            transition: all 0.3s;
+        }
+
+        .template-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .template-image {
+            width: 100%;
+            height: 200px;
+            background: var(--bg-main);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .template-image-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.1) 0%, rgba(124, 58, 237, 0.1) 100%);
+        }
+
+        .template-content {
+            padding: 32px;
+        }
+
+        .template-name {
+            font-family: 'Cairo', 'Inter', sans-serif;
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 12px;
+        }
+
+        .template-description {
+            font-size: 16px;
+            color: var(--text-gray);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .template-meta {
+            display: flex;
+            gap: 24px;
+            margin-bottom: 24px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .template-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .template-meta-item svg {
+            color: var(--primary-blue);
+        }
+
+        .template-features {
+            margin-bottom: 24px;
+        }
+
+        .template-features h4 {
+            font-family: 'Cairo', 'Inter', sans-serif;
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 12px;
+        }
+
+        .features-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+        }
+
+        .features-list li {
+            font-size: 14px;
+            color: var(--text-gray);
+            padding: 4px 0;
+        }
+
+        .template-actions {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+
+        .custom-project-cta {
+            margin-top: 60px;
+        }
+
+        .custom-project-card {
+            background: var(--bg-light);
+            border: 2px solid var(--primary-blue);
+            border-radius: 20px;
+            padding: 60px 40px;
+            text-align: center;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .custom-project-card h2 {
+            font-family: 'Cairo', 'Inter', sans-serif;
+            font-size: 32px;
+            font-weight: 900;
+            color: var(--text-dark);
+            margin-bottom: 12px;
+        }
+
+        .custom-project-card p {
+            font-size: 18px;
+            color: var(--text-gray);
+            margin-bottom: 32px;
+        }
+
+        @media (max-width: 768px) {
+            .templates-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .features-list {
+                grid-template-columns: 1fr;
+            }
+
+            .template-actions {
+                flex-direction: column;
+                align-items: stretch;
+            }
+        }
+    </style>
+
+    <script>
+        // Default templates (fallback)
+        const defaultTemplates = [
+            {
+                id: 'bot',
+                name: 'بوت Telegram متقدم',
+                description: 'بوت Telegram شامل مع إدارة المجموعات، أوامر مخصصة، قاعدة بيانات، ونظام إشعارات.',
+                features: ['إدارة المجموعات', 'أوامر مخصصة', 'قاعدة بيانات', 'نظام إشعارات', 'لوحة تحكم', 'تكامل APIs'],
+                time: '2-4 أسابيع',
+                priceRange: '1,500 - 4,000 دج',
+                caseStudy: 1
+            },
+            {
+                id: 'website',
+                name: 'موقع تجارة إلكترونية',
+                description: 'منصة بيع أونلاين كاملة مع سلة التسوق، نظام الدفع، إدارة المنتجات، وتتبع الطلبات.',
+                features: ['سلة تسوق', 'نظام دفع', 'إدارة منتجات', 'لوحة تحكم إدارية', 'تتبع طلبات', 'نظام تقييمات'],
+                time: '4-6 أسابيع',
+                priceRange: '3,000 - 8,000 دج',
+                caseStudy: 2
+            },
+            {
+                id: 'system',
+                name: 'نظام إدارة مخصص',
+                description: 'نظام إدارة شامل حسب احتياجاتك: إدارة مستخدمين، تقارير، لوحة تحكم متقدمة، وتكاملات.',
+                features: ['إدارة مستخدمين', 'لوحة تحكم متقدمة', 'نظام تقارير', 'API مخصص', 'تكاملات خارجية', 'نظام صلاحيات'],
+                time: '4+ أسابيع',
+                priceRange: '8,000 - 20,000 دج',
+                caseStudy: 3
+            }
+        ];
+
+        // Load templates from localStorage
+        function loadTemplates() {
+            let templates = [];
+            try {
+                const saved = localStorage.getItem('deinkow_templates');
+                if (saved) {
+                    const parsed = JSON.parse(saved);
+                    if (Array.isArray(parsed) && parsed.length > 0) {
+                        templates = parsed;
+                    } else {
+                        templates = defaultTemplates;
+                    }
+                } else {
+                    templates = defaultTemplates;
+                }
+            } catch (e) {
+                console.error('Error loading templates:', e);
+                templates = defaultTemplates;
+            }
+
+            const grid = document.getElementById('templatesGrid');
+            if (!grid) return;
+
+            if (templates.length === 0) {
+                grid.innerHTML = '<div style="text-align: center; padding: 60px 20px; color: var(--text-gray); grid-column: 1 / -1;"><p>ما فيش نماذج متاحة حالياً</p></div>';
+                return;
+            }
+
+            // Icon SVGs for different template types
+            const getIcon = (templateId) => {
+                if (templateId === 'bot' || templateId.includes('bot')) {
+                    return `<svg width="64" height="64" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM16.64 8.8C16.49 10.38 15.84 14.22 15.51 15.99C15.37 16.74 15.09 16.99 14.83 17.02C14.25 17.07 13.81 16.64 13.25 16.27C12.37 15.69 11.87 15.33 11.02 14.77C10.03 14.12 10.67 13.76 11.24 13.18C11.39 13.03 13.95 10.7 14 10.49C14.0077 10.4582 14.0077 10.4246 14 10.393C13.97 10.29 13.89 10.23 13.8 10.18C13.68 10.12 13.55 10.15 13.44 10.18C13.28 10.24 11.95 11.16 9.4 12.61C8.89 12.88 8.42 13.02 8 13.02C7.54 13.02 6.63 12.8 5.95 12.61C5.25 12.41 4.68 12.3 4.73 11.94C4.75 11.79 5.01 11.63 5.5 11.45C8.11 10.44 10.25 9.65 11.93 9.08C14.49 8.2 15.25 7.95 15.54 7.95C15.63 7.95 15.83 7.98 15.96 8.09C16.07 8.18 16.1 8.3 16.11 8.38C16.12 8.46 16.14 8.63 16.13 8.79L16.64 8.8Z" fill="var(--primary-blue)"/>
+                    </svg>`;
+                } else if (templateId === 'website' || templateId.includes('website')) {
+                    return `<svg width="64" height="64" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="3" y="3" width="18" height="18" rx="2" stroke="var(--primary-blue)" stroke-width="2"/>
+                        <path d="M3 9H21M9 21V9" stroke="var(--primary-blue)" stroke-width="2"/>
+                    </svg>`;
+                } else {
+                    return `<svg width="64" height="64" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="2" y="3" width="20" height="14" rx="2" stroke="var(--primary-blue)" stroke-width="2"/>
+                        <line x1="8" y1="21" x2="16" y2="21" stroke="var(--primary-blue)" stroke-width="2"/>
+                        <line x1="12" y1="17" x2="12" y2="21" stroke="var(--primary-blue)" stroke-width="2"/>
+                    </svg>`;
+                }
+            };
+
+            grid.innerHTML = templates.map(template => `
+                <div class="template-card">
+                    <div class="template-image">
+                        ${template.image ? 
+                            `<img src="${template.image}" alt="${template.name}" style="width: 100%; height: 100%; object-fit: cover;">` :
+                            `<div class="template-image-placeholder">
+                                ${getIcon(template.id)}
+                            </div>`
+                        }
+                    </div>
+                    <div class="template-content">
+                        <h3 class="template-name">${template.name || 'نموذج'}</h3>
+                        <p class="template-description">${template.description || ''}</p>
+                        
+                        <div class="template-meta">
+                            <div class="template-meta-item">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                                    <polyline points="12 6 12 12 16 14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                </svg>
+                                <span>${template.time || 'غير محدد'}</span>
+                            </div>
+                            <div class="template-meta-item">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <line x1="12" y1="1" x2="12" y2="23" stroke="currentColor" stroke-width="2"/>
+                                    <path d="M17 5H9.5C8.57174 5 7.6815 5.36875 7.02513 6.02513C6.36875 6.6815 6 7.57174 6 8.5C6 9.42826 6.36875 10.3185 7.02513 10.9749C7.6815 11.6312 8.57174 12 9.5 12H14.5C15.4283 12 16.3185 12.3687 16.9749 13.0251C17.6312 13.6815 18 14.5717 18 15.5C18 16.4283 17.6312 17.3185 16.9749 17.9749C16.3185 18.6312 15.4283 19 14.5 19H6" stroke="currentColor" stroke-width="2"/>
+                                </svg>
+                                <span>${template.priceRange || 'غير محدد'}</span>
+                            </div>
+                        </div>
+
+                        <div class="template-features">
+                            <h4>الميزات المتضمنة:</h4>
+                            <ul class="features-list">
+                                ${(template.features || []).map(f => `<li>✓ ${f}</li>`).join('')}
+                            </ul>
+                        </div>
+
+                        <div class="template-actions">
+                            <button class="btn btn-primary" onclick="orderTemplate('${template.id}')">اطلب هذا النموذج</button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Order template function
+        function orderTemplate(templateId) {
+            let templates = [];
+            try {
+                const saved = localStorage.getItem('deinkow_templates');
+                if (saved) {
+                    templates = JSON.parse(saved);
+                } else {
+                    templates = defaultTemplates;
+                }
+            } catch (e) {
+                templates = defaultTemplates;
+            }
+
+            const template = templates.find(t => t.id === templateId) || defaultTemplates.find(t => t.id === templateId);
+            if (template) {
+                const templateData = {
+                    type: template.id,
+                    subject: template.name,
+                    features: template.features || []
+                };
+                // Store template data in localStorage
+                localStorage.setItem('selectedTemplate', JSON.stringify(templateData));
+                // Redirect to support page
+                window.location.href = '/RequestProject?template=' + templateId;
+            }
+        }
+
+        // Check auth status and load templates
+        window.addEventListener('DOMContentLoaded', () => {
+            const token = localStorage.getItem('authToken');
+            const userOnly = document.querySelectorAll('.user-only');
+            const guestOnly = document.querySelectorAll('.guest-only');
+            
+            if (token) {
+                userOnly.forEach(el => el.style.display = '');
+                guestOnly.forEach(el => el.style.display = 'none');
+            } else {
+                userOnly.forEach(el => el.style.display = 'none');
+                guestOnly.forEach(el => el.style.display = '');
+            }
+
+            // Load templates from localStorage
+            loadTemplates();
+        });
+    </script>
+</body>
+</html>
+

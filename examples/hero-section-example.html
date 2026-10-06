@@ -1,0 +1,53 @@
+<!-- 
+  Example: Hero Section with Typing Headline and Visitors Counter
+  
+  Paste this into your homepage hero section
+-->
+<section class="hero">
+  <div class="container">
+    <div class="hero-content">
+      <!-- Typing Headline -->
+      <h1 class="hero-title">
+        <div id="typingHeadline" class="typing-headline-container"></div>
+      </h1>
+      
+      <p class="hero-description">
+        ستوديو برمجي وشبكة مطورين نخدمولك أي مشروع
+      </p>
+      
+      <!-- Visitors Counter -->
+      <div id="visitorsCounter" class="visitors-container" style="margin-top: 24px;"></div>
+      
+      <div class="hero-cta">
+        <a href="/request-project" class="btn btn-primary btn-large">
+          ابدأ مشروعك الآن
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+// Initialize Typing Headline
+document.addEventListener('DOMContentLoaded', () => {
+  const headlineContainer = document.getElementById('typingHeadline');
+  if (headlineContainer) {
+    new TypingHeadline(headlineContainer, {
+      staticText: 'We build',
+      words: ['Websites.', 'Apps.', 'Bots.', 'Scripts.'],
+      typingSpeed: 100,
+      deletingSpeed: 50,
+      pauseTime: 2000
+    });
+  }
+  
+  // Initialize Visitors Counter
+  const visitorsContainer = document.getElementById('visitorsCounter');
+  if (visitorsContainer) {
+    new Visitors(visitorsContainer, {
+      min: 2,
+      max: 6
+    });
+  }
+});
+</script>
