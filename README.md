@@ -95,7 +95,7 @@ Source code is MIT licensed. Third-party dependencies and assets retain their ow
 
 ## Actual application interface
 
-![Deinkow — interface with synthetic demonstration data](docs/images/studio-desktop.jpg)
+![Deinkow — interface with synthetic demonstration data](docs/images/client-dashboard.jpg)
 
 Captured from the local application with synthetic records. This does not establish production usage or Android device verification.
 

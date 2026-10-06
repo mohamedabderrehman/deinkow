@@ -4,10 +4,6 @@ A walkthrough using actual interface captures. This is a captured gallery, not a
 
 Visitor explores studio services → client submits a request → client and administrator exchange messages/files in its workroom → notifications and status updates maintain continuity.
 
-## studio desktop
-
-![Deinkow](images/studio-desktop.jpg)
-
 ## client dashboard
 
 ![Deinkow](images/client-dashboard.jpg)

@@ -4,10 +4,6 @@
 
 يستكشف الزائر خدمات الاستوديو ← يرسل العميل طلباً ← يتبادل العميل والإدارة الرسائل والملفات في غرفة العمل ← تحافظ الإشعارات والحالات على متابعة العمل.
 
-## studio desktop
-
-![Deinkow](images/studio-desktop.jpg)
-
 ## client dashboard
 
 ![Deinkow](images/client-dashboard.jpg)

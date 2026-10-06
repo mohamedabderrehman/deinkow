@@ -85,7 +85,7 @@ PHP_API --> AttachmentStorage
 
 ## من التطبيق الفعلي
 
-![Deinkow — واجهة ببيانات اصطناعية](docs/images/studio-desktop.jpg)
+![Deinkow — واجهة ببيانات اصطناعية](docs/images/client-dashboard.jpg)
 
 هذه لقطة فعلية للواجهة المحلية، وليست دليلاً على استخدام إنتاجي أو فحص أندرويد.
 

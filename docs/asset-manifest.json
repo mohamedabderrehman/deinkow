@@ -20,18 +20,13 @@
     "scope": "Actual synthetic application capture"
   },
   {
-    "path": "docs/images/studio-desktop.jpg",
-    "sha256": "bad5be0ade3c2bea468d3b800d71fb1abd76f78a871716fb52c75d36a82c5d6d",
-    "scope": "Actual synthetic application capture"
-  },
-  {
     "path": "docs/images/workroom-messages.jpg",
     "sha256": "2bd7c6a3aa480814becd819a5db0b1d0de8a836880af85ff9f501b5803ef7947",
     "scope": "Actual synthetic application capture"
   },
   {
     "path": "docs/videos/walkthrough.mp4",
-    "sha256": "2dd692494f72e67495b7b092e2ec0557ca93caedaea1febdf986abf251771eb7",
+    "sha256": "4961ff95c55b24466039f03394248000e1a2fe2ba72f0adfbdfbc5d9546ae020",
     "scope": "Actual synthetic application capture"
   }
 ]
